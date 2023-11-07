@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\Backend;
 
+use App\Models\User;
+use App\Utilities\Constant;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Utilities\Constant;
 use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
@@ -27,8 +28,13 @@ class AdminController extends Controller
         if (Auth::attempt($params, $remember)) {
             return redirect()->intended('admin/dashboard');
         } else {
-            return back()->with('notification', 'Email or password not correct');
+            $user = User::where('email', $request->email)->first();
+            if ($user && $user->level != Constant::user_level_admin) {
+                // Level không đúng, hiển thị thông báo lỗi.
+                return back()->with('notification', 'You do not have access');
+            }
         }
+        return back()->with('notification', 'Email or password not correct');
     }
     // Logout
     public function logout()

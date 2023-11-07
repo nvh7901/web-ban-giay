@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\Backend\AdminController;
 use App\Http\Controllers\Backend\AdminProfileController;
+use App\Http\Controllers\Frontend\AuthenticationController;
+use App\Http\Controllers\Frontend\IndexController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -16,14 +18,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+// ------------------- Admin ---------------------
 Route::prefix('admin')->middleware('check.admin.login')->group(function () {
     Route::get('/dashboard', function () {
         return view('admin.index');
@@ -46,3 +45,30 @@ Route::prefix('admin')->middleware('check.admin.login')->group(function () {
         Route::post('/update-password', [AdminProfileController::class, 'adminProfileUpdatePassword'])->name('admin.password.update');
     });
 });
+// -------------------End Admin -------------------
+
+// ------------------- Frontend -------------------
+Route::get('/', [IndexController::class, 'index']);
+// Login
+Route::prefix('/login')->group(function () {
+    Route::get('/', [AuthenticationController::class, 'getUserLogin'])->withoutMiddleware('check.user.login');
+    Route::post('/', [AuthenticationController::class, 'postUserLogin'])->withoutMiddleware('check.user.login');
+});
+// Logout
+Route::get('/log-out', [AuthenticationController::class, 'userLogout']);
+// Register
+Route::prefix('/register')->group(function () {
+    Route::get('/', [AuthenticationController::class, 'getUserRegister']);
+    Route::post('/', [AuthenticationController::class, 'postUserRegister'])->name('user.register');
+});
+// Forget Password
+Route::prefix('forget-password')->group(function() {
+    Route::get('/', [AuthenticationController::class, 'getForgetPassword'])->name('user.get.forget-password');
+    Route::post('/', [AuthenticationController::class, 'postForgetPassword'])->name('user.post.forget-password');
+});
+// Reset Password
+Route::prefix('reset-password')->group(function() {
+    Route::get('/{token}', [AuthenticationController::class, 'getResetPassword']);
+    Route::post('/', [AuthenticationController::class, 'postResetPassword'])->name('user.post.reset-password');
+});
+// ------------------- End Frontend ---------------
