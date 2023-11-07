@@ -55,7 +55,7 @@ Route::prefix('/login')->group(function () {
     Route::post('/', [AuthenticationController::class, 'postUserLogin'])->withoutMiddleware('check.user.login');
 });
 // Logout
-Route::get('/log-out', [AuthenticationController::class, 'userLogout']);
+Route::get('/log-out', [AuthenticationController::class, 'userLogout'])->name('user.log-out');
 // Register
 Route::prefix('/register')->group(function () {
     Route::get('/', [AuthenticationController::class, 'getUserRegister']);
@@ -70,5 +70,19 @@ Route::prefix('forget-password')->group(function() {
 Route::prefix('reset-password')->group(function() {
     Route::get('/{token}', [AuthenticationController::class, 'getResetPassword']);
     Route::post('/', [AuthenticationController::class, 'postResetPassword'])->name('user.post.reset-password');
+});
+
+Route::prefix('user')->middleware('check.user.login')->group(function() {
+    Route::get('/dashboard', [IndexController::class, 'dashboard'])->name('user.dashboard');
+
+    Route::prefix('profile')->group(function() {
+        Route::get('/', [IndexController::class, 'userProfile'])->name('user.profile');
+        Route::post('/', [IndexController::class, 'userProfileUpdate'])->name('user.profile.update');
+    });
+
+    Route::prefix('change-password')->group(function() {
+        Route::get('/', [IndexController::class, 'getChangePassword'])->name('user.get.change-password');
+        Route::post('/', [IndexController::class, 'postChangePassword'])->name('user.post.change-password');
+    });
 });
 // ------------------- End Frontend ---------------

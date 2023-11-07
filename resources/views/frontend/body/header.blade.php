@@ -6,21 +6,21 @@
             <div class="header-top-inner">
                 <div class="cnt-account">
                     <ul class="list-unstyled">
-                        <li><a href="#"><i class="icon fa fa-user"></i>My Account</a></li>
+                        <li><a href="./user/dashboard"><i class="icon fa fa-user"></i>My Account</a></li>
                         <li><a href="#"><i class="icon fa fa-heart"></i>Wishlist</a></li>
                         <li><a href="#"><i class="icon fa fa-shopping-cart"></i>My Cart</a></li>
                         <li><a href="#"><i class="icon fa fa-check"></i>Checkout</a></li>
                         <li>
                             @if (Auth::check())
-                                <a href="./log-out"><i class="icon fa fa-lock"></i>Logout</a>
+                                <a href="/log-out"><i class="icon fa fa-lock"></i>Logout</a>
                             @else
-                                <a href="./login"><i class="icon fa fa-lock"></i>Login</a>
+                                <a href="/login"><i class="icon fa fa-lock"></i>Login</a>
                             @endif
                         </li>
                         <li>
                             @if (Auth::check())
                             @else
-                                <a href="./register"><i class="icon fa fa-lock"></i>Register</a>
+                                <a href="/register"><i class="icon fa fa-lock"></i>Register</a>
                             @endif
                         </li>
                     </ul>
@@ -64,7 +64,7 @@
             <div class="row">
                 <div class="col-xs-12 col-sm-12 col-md-3 logo-holder">
                     <!-- ============================================================= LOGO ============================================================= -->
-                    <div class="logo"> <a href="home.html"> <img src="{{ asset('frontend/assets/images/logo.png') }}"
+                    <div class="logo"> <a href="/"> <img src="{{ asset('frontend/assets/images/logo.png') }}"
                                 alt="logo"> </a>
                     </div>
                     <!-- /.logo -->

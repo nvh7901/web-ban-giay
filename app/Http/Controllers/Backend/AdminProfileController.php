@@ -12,20 +12,23 @@ class AdminProfileController extends Controller
 {
     public function adminProfile()
     {
-        $adminData = User::find(1);
+        $id = Auth::user()->id;
+        $adminData = User::find($id);
         return view('admin.admin_profile', compact('adminData'));
     }
 
     // Profile
     public function adminProfileEdit(Request $request)
     {
-        $editData = User::find(1);
+        $id = Auth::user()->id;
+        $editData = User::find($id);
         return view('admin.admin_profile_edit', compact('editData'));
     }
 
     public function adminProfileUpdate(Request $request)
     {
-        $data = User::find(1);
+        $id = Auth::user()->id;
+        $data = User::find($id);
         $data->name = $request->name;
         $data->email = $request->email;
         // Upload file
@@ -54,14 +57,10 @@ class AdminProfileController extends Controller
 
     public function adminProfileUpdatePassword(Request $request)
     {
-        // $validate = $request->validate([
-        //     'oldpassword' => 'required',
-        //     'password' => 'required|confirmed',
-        // ]);
-
-        $hashPassword = User::find(1)->password;
+        $id = Auth::user()->id;
+        $hashPassword = User::find($id)->password;
         if (Hash::check($request->oldpassword, $hashPassword)) {
-            $data = User::find(1);
+            $data = User::find($id);
             $data->password = Hash::make($request->password);
             $data->save();
             // Thay đổi xong mk sẽ logout ra
