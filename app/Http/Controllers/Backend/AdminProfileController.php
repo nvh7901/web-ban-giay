@@ -27,6 +27,11 @@ class AdminProfileController extends Controller
 
     public function adminProfileUpdate(Request $request)
     {
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required',
+        ]);
+
         $id = Auth::user()->id;
         $data = User::find($id);
         $data->name = $request->name;

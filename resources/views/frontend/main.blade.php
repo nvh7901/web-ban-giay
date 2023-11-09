@@ -46,10 +46,10 @@
                     toastr.success("{{ Session::get('message') }}");
                     break;
                 case 'warning':
-                    toastr.success("{{ Session::get('message') }}");
+                    toastr.warning("{{ Session::get('message') }}");
                     break;
                 case 'error':
-                    toastr.success("{{ Session::get('message') }}");
+                    toastr.error("{{ Session::get('message') }}");
                     break;
             }
         @endif

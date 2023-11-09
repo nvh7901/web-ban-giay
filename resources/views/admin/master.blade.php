@@ -55,15 +55,44 @@
                     toastr.success("{{ Session::get('message') }}");
                     break;
                 case 'warning':
-                    toastr.success("{{ Session::get('message') }}");
+                    toastr.warning("{{ Session::get('message') }}");
                     break;
                 case 'error':
-                    toastr.success("{{ Session::get('message') }}");
+                    toastr.error("{{ Session::get('message') }}");
                     break;
             }
         @endif
     </script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script src="{{ asset('../assets/vendor_components/datatable/datatables.min.js') }}"></script>
+    {{-- <script src="{{ asset('backend/js/pages/data-table.js') }}"></script> --}}
+
+    <script>
+        $(function() {
+            $(document).on('click', '#delete', function(e) {
+                e.preventDefault();
+                var link = $(this).attr('href');
+                Swal.fire({
+                    title: "Are you sure?",
+                    text: "You won't be able to revert this!",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Yes, delete it!"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href = link;
+                        Swal.fire({
+                            title: "Deleted!",
+                            text: "Your file has been deleted.",
+                            icon: "success"
+                        });
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 
 </html>

@@ -31,10 +31,18 @@ class AdminController extends Controller
             $user = User::where('email', $request->email)->first();
             if ($user && $user->level != Constant::user_level_admin) {
                 // Level không đúng, hiển thị thông báo lỗi.
-                return back()->with('notification', 'You do not have access');
+                $notification = array(
+                    'message' => 'You do not have access',
+                    'alert-type' => 'error',
+                );
+                return back()->with($notification);
             }
         }
-        return back()->with('notification', 'Email or password not correct');
+        $notification = array(
+            'message' => 'Email or password is incorrect',
+            'alert-type' => 'error',
+        );
+        return back()->with($notification);
     }
     // Logout
     public function logout()

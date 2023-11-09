@@ -16,7 +16,12 @@
                             <form action="{{ route('admin.profile.update') }}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 <div class="row">
-                                    <div class="col-12">
+                                    <div class="col-8">
+                                        @error('name')
+                                            <div class="alert alert-danger" role="alert">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
                                         <div class="form-group">
                                             <h5>Name <span class="text-danger">*</span></h5>
                                             <div class="controls">
@@ -25,7 +30,11 @@
                                                 <div class="help-block"></div>
                                             </div>
                                         </div>
-
+                                        @error('email')
+                                            <div class="alert alert-danger" role="alert">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
                                         <div class="form-group">
                                             <h5>Email <span class="text-danger">*</span></h5>
                                             <div class="controls">

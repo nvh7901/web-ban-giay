@@ -23,6 +23,10 @@ class AuthenticationController extends Controller
 
     public function postUserLogin(Request $request)
     {
+        $request->validate([
+            'email' => 'required',
+            'password' => 'required',
+        ]);
         $params = [
             'email' => $request->email,
             'password' => $request->password,
@@ -35,10 +39,18 @@ class AuthenticationController extends Controller
             $user = User::where('email', $request->email)->first();
             if ($user && $user->level != Constant::user_level_user) {
                 // Level không đúng, hiển thị thông báo lỗi.
-                return back()->with('notification', 'You do not have access');
+                $notification = array(
+                    'message' => 'You do not have access',
+                    'alert-type' => 'error',
+                );
+                return back()->with($notification);
             }
         }
-        return back()->with('notification', 'Email or password is incorrect');
+        $notification = array(
+            'message' => 'Email or password is incorrect',
+            'alert-type' => 'error',
+        );
+        return back()->with($notification);
     }
 
     // Logout
@@ -56,6 +68,13 @@ class AuthenticationController extends Controller
 
     public function postUserRegister(Request $request)
     {
+        $request->validate([
+            'email' => 'required',
+            'password' => 'required',
+            'name' => 'required',
+            'phone' => 'required',
+        ]);
+
         $params = [
             'email' => $request->email,
             'name' => $request->name,
