@@ -10,8 +10,8 @@
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="/admin/dashboard"><i class="mdi mdi-home-outline"></i></a>
                                 </li>
-                                <li class="breadcrumb-item" aria-current="page"><a href="/admin/dashboard">Home</a></li>
-                                <li class="breadcrumb-item" aria-current="page"><a href="/admin/dashboard">List Brands</a>
+                                <li class="breadcrumb-item" aria-current="page"><a href="/admin/dashboard">Dashboard</a></li>
+                                <li class="breadcrumb-item" aria-current="page"><a href="/admin/brand">List Brands</a>
                                 </li>
                                 <li class="breadcrumb-item active" aria-current="page">Edit Brand</li>
                             </ol>

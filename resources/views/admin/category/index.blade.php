@@ -5,13 +5,14 @@
         <div class="content-header">
             <div class="d-flex align-items-center">
                 <div class="mr-auto">
-                    <h3 class="page-title">List Brands</h3>
+                    <h3 class="page-title">List Categories</h3>
                     <div class="d-inline-block align-items-center">
                         <nav>
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="#"><i class="mdi mdi-home-outline"></i></a></li>
-                                <li class="breadcrumb-item" aria-current="page"><a href="/admin/dashboard">Dashboard</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">List Brands</li>
+                                <li class="breadcrumb-item" aria-current="page"><a href="/admin/dashboard">Dashboard</a>
+                                </li>
+                                <li class="breadcrumb-item active" aria-current="page">List Categories</li>
                             </ol>
                         </nav>
                     </div>
@@ -28,7 +29,7 @@
                             <div class="app-page-title">
                                 <div class="page-title-wrapper">
                                     <div class="page-title-actions">
-                                        <a href="/admin/brand/create"
+                                        <a href="/admin/category/create"
                                             class="btn-shadow btn-hover-shine mr-3 btn btn-primary">
                                             <span class="btn-icon-wrapper pr-2 opacity-7">
                                                 <i class="fa fa-plus fa-w-20"></i>
@@ -73,39 +74,31 @@
                                                         <th class="sorting" tabindex="0" aria-controls="example1"
                                                             rowspan="1" colspan="1"
                                                             aria-label="Position: activate to sort column ascending"
-                                                            style="width: 167.062px;">Brand Name Vi</th>
+                                                            style="width: 167.062px;">Category Name Vi</th>
                                                         <th class="sorting" tabindex="0" aria-controls="example1"
                                                             rowspan="1" colspan="1"
                                                             aria-label="Office: activate to sort column ascending"
-                                                            style="width: 167.062px;">Brand Name En</th>
-                                                        <th class="sorting" tabindex="0" aria-controls="example1"
-                                                            rowspan="1" colspan="1"
-                                                            aria-label="Age: activate to sort column ascending"
-                                                            style="width: 167.062px;">Image</th>
+                                                            style="width: 167.062px;">Category Name En</th>
                                                         <th class="sorting" tabindex="0" aria-controls="example1"
                                                             rowspan="1" colspan="1"
                                                             aria-label="Start date: activate to sort column ascending"
                                                             style="width: 114.25px;">Action</th>
                                                 </thead>
                                                 <tbody>
-                                                    @foreach ($data as $brand)
+                                                    @foreach ($data as $category)
                                                         <tr role="row" class="odd">
-                                                            <td class="sorting_1">{{ $brand->id }}</td>
-                                                            <td>{{ $brand->brand_name_vi }}</td>
-                                                            <td>{{ $brand->brand_name_en }}</td>
+                                                            <td class="sorting_1">{{ $category->id }}</td>
+                                                            <td>{{ $category->category_name_vi }}</td>
+                                                            <td>{{ $category->category_name_en }}</td>
                                                             <td>
-                                                                <img src="{{ url('upload/brand/' . $brand->brand_image) }}"
-                                                                    style="width: 100px; height: 100px;">
-                                                            </td>
-                                                            <td>
-                                                                <a href="/admin/brand/edit/{{ $brand->id }}"
+                                                                <a href="/admin/category/edit/{{ $category->id }}"
                                                                     class="btn btn-info border-0">
                                                                     <span class="btn-icon-wrapper opacity-8">
                                                                         <i class="fa fa-edit fa-w-20"></i>
                                                                     </span>
                                                                 </a>
 
-                                                                <a href="{{ route('brand.delete', $brand->id) }}"
+                                                                <a href="{{ route('category.delete', $category->id) }}"
                                                                     class="btn btn-danger border-0" id="delete">
                                                                     <span class="btn-icon-wrapper opacity-8">
                                                                         <i class="fa fa-trash fa-w-20"></i>
@@ -119,18 +112,17 @@
                                             {{ $data->links('admin.components.paginate_custom') }}
                                         </div>
                                     </div>
-                                    
+
+                                </div>
                             </div>
+                            <!-- /.box-body -->
                         </div>
-                        <!-- /.box-body -->
+                        <!-- /.box -->
                     </div>
-                    <!-- /.box -->
+                    <!-- /.col -->
                 </div>
-                <!-- /.col -->
-            </div>
-            <!-- /.row -->
+                <!-- /.row -->
         </section>
         <!-- /.content -->
-
     </div>
 @endsection

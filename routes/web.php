@@ -3,6 +3,7 @@
 use App\Http\Controllers\Backend\AdminController;
 use App\Http\Controllers\Backend\AdminProfileController;
 use App\Http\Controllers\Backend\BrandController;
+use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Frontend\AuthenticationController;
 use App\Http\Controllers\Frontend\IndexController;
 use Illuminate\Support\Facades\Auth;
@@ -54,6 +55,16 @@ Route::prefix('admin')->middleware('check.admin.login')->group(function () {
         Route::get('/edit/{id}', [BrandController::class, 'edit'])->name('brand.edit');
         Route::post('/update/{id}', [BrandController::class, 'update'])->name('brand.update');
         Route::get('/delete/{id}', [BrandController::class, 'delete'])->name('brand.delete');
+    });
+
+    // Category
+    Route::prefix('category')->group(function () {
+        Route::get('/', [CategoryController::class, 'index'])->name('category.index');
+        Route::get('/create', [CategoryController::class, 'create'])->name('category.create');
+        Route::post('/store', [CategoryController::class, 'store'])->name('category.store');
+        Route::get('/edit/{id}', [CategoryController::class, 'edit'])->name('category.edit');
+        Route::post('/update/{id}', [CategoryController::class, 'update'])->name('category.update');
+        Route::get('/delete/{id}', [CategoryController::class, 'delete'])->name('category.delete');
     });
 });
 // -------------------End Admin -------------------

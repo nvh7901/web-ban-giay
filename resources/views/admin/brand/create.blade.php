@@ -10,10 +10,10 @@
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="/admin/dashboard"><i class="mdi mdi-home-outline"></i></a>
                                 </li>
-                                <li class="breadcrumb-item" aria-current="page"><a href="/admin/dashboard">Home</a></li>
-                                <li class="breadcrumb-item" aria-current="page"><a href="/admin/dashboard">List Brands</a>
+                                <li class="breadcrumb-item" aria-current="page"><a href="/admin/dashboard">Dashboard</a></li>
+                                <li class="breadcrumb-item" aria-current="page"><a href="/admin/brand">List Brands</a>
                                 </li>
-                                <li class="breadcrumb-item active" aria-current="page">Edit Brand</li>
+                                <li class="breadcrumb-item active" aria-current="page">Create Brand</li>
                             </ol>
                         </nav>
                     </div>
@@ -30,9 +30,6 @@
                                 <div class="col">
                                     <form action="{{ route('brand.store') }}" method="POST" enctype="multipart/form-data">
                                         @csrf
-                                        <input type="hidden" name="brand_slug_vi">
-                                        <input type="hidden" name="brand_slug_en">
-
                                         <div class="row">
                                             <div class="col-md-6">
                                                 @error('brand_name_vi')
