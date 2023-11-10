@@ -9,11 +9,15 @@ class Category extends Model
 {
     use HasFactory;
 
-    public $timestamps = true;
     protected $fillable = [
         'category_name_vi',
         'category_name_en',
         'category_slug_vi',
         'category_slug_en'
     ];
+
+    public function subCategory()
+    {
+        return $this->hasMany(SubCategory::class, 'id', 'category_id');
+    }
 }

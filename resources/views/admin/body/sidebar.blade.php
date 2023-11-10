@@ -24,7 +24,7 @@
                     <span>Dashboard</span>
                 </a>
             </li>
-
+            {{-- Brand --}}
             <li class="treeview {{ request()->segment(2) == 'brand' ? 'active' : '' }}">
                 <a href="{{ route('brand.index') }}">
                     <i data-feather="grid"></i>
@@ -38,7 +38,7 @@
                     <li><a href="{{ route('brand.create') }}"><i class="ti-more"></i>Create Brand</a></li>
                 </ul>
             </li>
-
+            {{-- Category --}}
             <li class="treeview {{ request()->segment(2) == 'category' ? 'active' : '' }}">
                 <a href="{{ route('category.index') }}">
                     <i data-feather="grid"></i>
@@ -52,7 +52,20 @@
                     <li><a href="{{ route('category.create') }}"><i class="ti-more"></i>Create Category</a></li>
                 </ul>
             </li>
-
+            {{-- Sub Category --}}
+            <li class="treeview {{ request()->segment(2) == 'sub-category' ? 'active' : '' }}">
+                <a href="{{ route('sub-category.index') }}">
+                    <i data-feather="grid"></i>
+                    <span>Sub Categories</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-right pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="{{ route('sub-category.index') }}"><i class="ti-more"></i>All Sub Categories</a></li>
+                    <li><a href="{{ route('sub-category.create') }}"><i class="ti-more"></i>Create Sub Category</a></li>
+                </ul>
+            </li>
             <li class="treeview">
                 <a href="#">
                     <i data-feather="file"></i>

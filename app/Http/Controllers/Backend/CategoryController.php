@@ -97,8 +97,7 @@ class CategoryController extends Controller
      */
     public function delete($id)
     {
-        $category = Category::findorFail($id);
-        $category->delete();
+        Category::findorFail($id)->delete();
 
         $notification = array(
             'message' => 'Delete Category Successfully',

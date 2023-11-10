@@ -4,7 +4,7 @@
         <div class="content-header">
             <div class="d-flex align-items-center">
                 <div class="mr-auto">
-                    <h3 class="page-title">Edit Category</h3>
+                    <h3 class="page-title">Edit Sub Category</h3>
                     <div class="d-inline-block align-items-center">
                         <nav>
                             <ol class="breadcrumb">
@@ -12,7 +12,7 @@
                                 </li>
                                 <li class="breadcrumb-item" aria-current="page"><a href="/admin/dashboard">Dashboard</a>
                                 </li>
-                                <li class="breadcrumb-item" aria-current="page"><a href="/admin/category">List
+                                <li class="breadcrumb-item" aria-current="page"><a href="/admin/sub-category">List Sub
                                         Categories</a>
                                 </li>
                                 <li class="breadcrumb-item active" aria-current="page">Edit Category</li>
@@ -30,37 +30,61 @@
                         <div class="box-body">
                             <div class="row">
                                 <div class="col">
-                                    <form action="/admin/category/update/{{ $category->id }}" method="POST">
+                                    <form action="/admin/sub-category/update/{{ $subCategory->id }}" method="POST">
                                         @csrf
                                         <div class="row">
-                                            <div class="col-md-6">
-                                                @error('category_name_vi')
+                                            <div class="col-md-4">
+                                                @error('category_id')
                                                     <div class="alert alert-danger" role="alert">
                                                         {{ $message }}
                                                     </div>
                                                 @enderror
                                                 <div class="form-group">
-                                                    <label>Category Name Vi <span class="text-danger">*</span></label>
+                                                    <h5>Category Select<span class="text-danger">*</span></h5>
+                                                    <div class="controls">
+                                                        <select name="category_id" class="form-control">
+                                                            <option value="" selected disabled>------- Chose Category
+                                                                -------</option>
+                                                            @foreach ($dataCategories as $category)
+                                                                <option value="{{ $category->id }}" {{ $category->id == $subCategory->category_id ? 'selected' : '' }}>
+                                                                    {{ $category->category_name_en }}
+                                                                </option>
+                                                            @endforeach
+
+
+                                                        </select>
+                                                        <div class="help-block"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                @error('sub_category_name_vi')
+                                                    <div class="alert alert-danger" role="alert">
+                                                        {{ $message }}
+                                                    </div>
+                                                @enderror
+                                                <div class="form-group">
+                                                    <label>Sub Category Name Vi <span class="text-danger">*</span></label>
 
                                                     <div class="input-group">
-                                                        <input type="text" class="form-control" name="category_name_vi"
-                                                            value="{{ $category->category_name_vi }}">
+                                                        <input type="text" class="form-control"
+                                                            name="sub_category_name_vi" value="{{ $subCategory->sub_category_name_vi }}">
                                                     </div>
                                                     <!-- /.input group -->
                                                 </div>
                                             </div>
-                                            <div class="col-md-6">
-                                                @error('category_name_en')
+                                            <div class="col-md-4">
+                                                @error('sub_category_name_en')
                                                     <div class="alert alert-danger" role="alert">
                                                         {{ $message }}
                                                     </div>
                                                 @enderror
                                                 <div class="form-group">
-                                                    <label>Category Name En <span class="text-danger">*</span></label>
+                                                    <label>Sub Category Name En <span class="text-danger">*</span></label>
 
                                                     <div class="input-group">
-                                                        <input type="text" class="form-control" name="category_name_en"
-                                                            value="{{ $category->category_name_en }}">
+                                                        <input type="text" class="form-control"
+                                                            name="sub_category_name_en" value="{{ $subCategory->sub_category_name_en }}">
                                                     </div>
                                                     <!-- /.input group -->
                                                 </div>
@@ -68,7 +92,7 @@
                                         </div>
                                         <div class="text-xs-right">
                                             <input type="submit" value="Update" class="btn btn-rounded btn-primary">
-                                            <a href="/admin/category" class="btn btn-rounded btn-danger">Cancel</a>
+                                            <a href="/admin/sub-category" class="btn btn-rounded btn-danger">Cancel</a>
                                         </div>
                                     </form>
                                 </div>
