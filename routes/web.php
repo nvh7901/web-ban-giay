@@ -4,6 +4,7 @@ use App\Http\Controllers\Backend\AdminController;
 use App\Http\Controllers\Backend\AdminProfileController;
 use App\Http\Controllers\Backend\BrandController;
 use App\Http\Controllers\Backend\CategoryController;
+use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\SubCategoryController;
 use App\Http\Controllers\Frontend\AuthenticationController;
 use App\Http\Controllers\Frontend\IndexController;
@@ -76,6 +77,21 @@ Route::prefix('admin')->middleware('check.admin.login')->group(function () {
         Route::get('/edit/{id}', [SubCategoryController::class, 'edit'])->name('sub-category.edit');
         Route::post('/update/{id}', [SubCategoryController::class, 'update'])->name('sub-category.update');
         Route::get('/delete/{id}', [SubCategoryController::class, 'delete'])->name('sub-category.delete');
+        // get dropdown sub-category
+        Route::get('/{category_id}', [SubCategoryController::class, 'getDropdownSubCategory']);
+    });
+
+    // Product
+    Route::prefix('product')->group(function () {
+        Route::get('/', [ProductController::class, 'index'])->name('product.index');
+        Route::get('/create', [ProductController::class, 'create'])->name('product.create');
+        Route::post('/store', [ProductController::class, 'store'])->name('product.store');
+        Route::get('/edit/{id}', [ProductController::class, 'edit'])->name('product.edit');
+        Route::post('/update/{id}', [ProductController::class, 'update'])->name('product.update');
+        Route::get('/delete/{id}', [ProductController::class, 'delete'])->name('product.delete');
+
+        Route::get('/in-active/{id}', [ProductController::class, 'inactive'])->name('product.inactive');
+        Route::get('/active/{id}', [ProductController::class, 'active'])->name('product.active');
     });
 });
 // -------------------End Admin -------------------

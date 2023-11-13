@@ -5,7 +5,7 @@
         <div class="content-header">
             <div class="d-flex align-items-center">
                 <div class="mr-auto">
-                    <h3 class="page-title">Create Sub Categories</h3>
+                    <h3 class="page-title">Create Sub Category</h3>
                     <div class="d-inline-block align-items-center">
                         <nav>
                             <ol class="breadcrumb">
@@ -44,7 +44,7 @@
                                                     <h5>Category Select<span class="text-danger">*</span></h5>
                                                     <div class="controls">
                                                         <select name="category_id" class="form-control">
-                                                            <option value="" selected disabled>------- Chose Category
+                                                            <option value="" selected disabled>------- Choose Category
                                                                 -------</option>
                                                             @foreach ($dataCategories as $category)
                                                                 <option value="{{ $category->id }}">

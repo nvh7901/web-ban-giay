@@ -87,8 +87,14 @@ class BrandController extends Controller
         $request->validate([
             'brand_name_vi' => 'required',
             'brand_name_en' => 'required',
-            'brand_image' => 'required'
         ]);
+
+        $params = [
+            'brand_name_vi' => $request->brand_name_vi,
+            'brand_name_en' => $request->brand_name_en,
+            'brand_slug_vi' => strtolower(str_replace(' ', '-', $request->brand_name_vi)),
+            'brand_slug_en' => strtolower(str_replace(' ', '-', $request->brand_name_en)),
+        ];
 
         $oldImage = $request->old_image;
         if ($request->hasFile('brand_image')) {
@@ -96,17 +102,8 @@ class BrandController extends Controller
             $image = $request->file('brand_image');
             $getFileName = uniqid() . '_' . date('m_Y') . '_' . $image->getClientOriginalName();
             Image::make($image)->resize(300, 300)->save('upload/brand/' . $getFileName);
-            $saveImage = $getFileName;
+            $params['brand_image'] = $getFileName;
         }
-
-        $params = [
-            'brand_name_vi' => $request->brand_name_vi,
-            'brand_name_en' => $request->brand_name_en,
-            'brand_slug_vi' => strtolower(str_replace(' ', '-', $request->brand_name_vi)),
-            'brand_slug_en' => strtolower(str_replace(' ', '-', $request->brand_name_en)),
-            'brand_image' => $saveImage,
-        ];
-
         Brand::findOrFail($id)->update($params);
         $notification = array(
             'message' => 'Update Brand Successfully',

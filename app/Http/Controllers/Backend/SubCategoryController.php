@@ -112,4 +112,10 @@ class SubCategoryController extends Controller
         );
         return redirect()->route('sub-category.index')->with($notification);
     }
+
+    public function getDropdownSubCategory($category_id)
+    {
+        $subcat = SubCategory::where('category_id', $category_id)->orderBy('sub_category_name_en', 'ASC')->get();
+        return json_encode($subcat);
+    }
 }

@@ -63,7 +63,23 @@
                 </a>
                 <ul class="treeview-menu">
                     <li><a href="{{ route('sub-category.index') }}"><i class="ti-more"></i>All Sub Categories</a></li>
-                    <li><a href="{{ route('sub-category.create') }}"><i class="ti-more"></i>Create Sub Category</a></li>
+                    <li><a href="{{ route('sub-category.create') }}"><i class="ti-more"></i>Create Sub Category</a>
+                    </li>
+                </ul>
+            </li>
+            {{-- Product --}}
+            <li class="treeview {{ request()->segment(2) == 'product' ? 'active' : '' }}">
+                <a href="{{ route('product.index') }}">
+                    <i data-feather="grid"></i>
+                    <span>Products</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-right pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="{{ route('product.index') }}"><i class="ti-more"></i>All Products</a></li>
+                    <li><a href="{{ route('product.create') }}"><i class="ti-more"></i>Create Product</a>
+                    </li>
                 </ul>
             </li>
             <li class="treeview">
