@@ -86,7 +86,6 @@ class ProductController extends Controller
             'status' => 1,
             'created_at' => Carbon::now(),
         ];
-        // dd($params);
         Product::insert($params);
 
         $notification = array(

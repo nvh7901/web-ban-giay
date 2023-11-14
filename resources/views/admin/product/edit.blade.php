@@ -355,7 +355,7 @@
 
                                                     <div class="controls">
                                                         <textarea class="form-control" aria-invalid="false" style="height: 78px;" name="short_desciption_en">
-                                                            {{ $product->short_desciption_en }}
+                                                            {!! $product->short_desciption_en !!}
                                                         </textarea>
                                                     </div>
                                                     <!-- /.input group -->
@@ -377,7 +377,7 @@
 
                                                     <div class="controls">
                                                         <textarea id="editor1" name="long_desciption_vi" rows="10" cols="80">
-                                                            {{ $product->long_desciption_vi }}
+                                                            {!! $product->long_desciption_vi !!}
                                                         </textarea>
                                                     </div>
                                                     <!-- /.input group -->

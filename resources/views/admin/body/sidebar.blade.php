@@ -82,22 +82,24 @@
                     </li>
                 </ul>
             </li>
-            <li class="treeview">
-                <a href="#">
-                    <i data-feather="file"></i>
-                    <span>Pages</span>
+            {{-- Slider --}}
+            <li class="treeview {{ request()->segment(2) == 'slider' ? 'active' : '' }}">
+                <a href="{{ route('product.index') }}">
+                    <i data-feather="grid"></i>
+                    <span>Slider</span>
                     <span class="pull-right-container">
                         <i class="fa fa-angle-right pull-right"></i>
                     </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="profile.html"><i class="ti-more"></i>Profile</a></li>
-                    <li><a href="invoice.html"><i class="ti-more"></i>Invoice</a></li>
-                    <li><a href="gallery.html"><i class="ti-more"></i>Gallery</a></li>
-                    <li><a href="faq.html"><i class="ti-more"></i>FAQs</a></li>
-                    <li><a href="timeline.html"><i class="ti-more"></i>Timeline</a></li>
+                    <li><a href="{{ route('slider.index') }}"><i class="ti-more"></i>All Slider</a></li>
+                    <li><a href="{{ route('slider.create') }}"><i class="ti-more"></i>Create Slider</a>
+                    </li>
                 </ul>
             </li>
+
+
+
 
             <li class="header nav-small-cap">User Interface</li>
 
