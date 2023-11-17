@@ -44,7 +44,7 @@ class SliderController extends Controller
         if ($request->hasFile('slider_image')) {
             $image = $request->file('slider_image');
             $getFileName = uniqid() . '_' . date('m_Y') . '_' . $image->getClientOriginalName();
-            Image::make($image)->resize(500, 500)->save('upload/slider/' . $getFileName);
+            Image::make($image)->resize(400, 200)->save('upload/slider/' . $getFileName);
             $saveImage = $getFileName;
         }
 
@@ -100,7 +100,7 @@ class SliderController extends Controller
             @unlink('upload/slider/' . $oldImage);
             $image = $request->file('slider_image');
             $getFileName = uniqid() . '_' . date('m_Y') . '_' . $image->getClientOriginalName();
-            Image::make($image)->resize(300, 300)->save('upload/slider/' . $getFileName);
+            Image::make($image)->resize(400, 200)->save('upload/slider/' . $getFileName);
             $params['slider_image'] = $getFileName;
         }
         Slider::findOrFail($id)->update($params);

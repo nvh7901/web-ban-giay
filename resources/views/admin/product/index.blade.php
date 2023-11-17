@@ -84,7 +84,7 @@
                                                         <th class="sorting" tabindex="0" aria-controls="example1"
                                                             rowspan="1" colspan="1"
                                                             aria-label="Office: activate to sort column ascending">Product
-                                                            Qty</th>
+                                                            Price</th>
                                                         <th class="sorting" tabindex="0" aria-controls="example1"
                                                             rowspan="1" colspan="1"
                                                             aria-label="Office: activate to sort column ascending">Status
@@ -105,7 +105,7 @@
                                                             </td>
                                                             <td>{{ $product->product_name_vi }}</td>
                                                             <td>{{ $product->product_name_en }}</td>
-                                                            <td>{{ number_format($product->product_qty, 0, '.') }} ₫</td>
+                                                            <td>{{ number_format($product->product_price, 0, '.') }} ₫</td>
                                                             <td>
                                                                 @if ($product->status == 1)
                                                                     <span class="badge badge-pill badge-success"> Active

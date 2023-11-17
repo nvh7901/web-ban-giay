@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Frontend;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Category;
+use App\Models\Product;
+use App\Models\Slider;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
@@ -12,22 +15,34 @@ class IndexController extends Controller
 {
     public function index()
     {
-        return view('frontend.index');
+        $categories = Category::orderBy('id', 'ASC')->get();
+        $sliders = Slider::where('status', 1)->orderBy('id', 'ASC')->limit(5)->get();
+        $products = Product::where('status', 1)->orderBy('id', 'ASC')->limit(10)->get();
+        $featured = Product::where('featured', 1)->orderBy('id', 'DESC')->limit(10)->get();
+        $hotDeals = Product::where('hot_deals', 1)->orderBy('id', 'DESC')->limit(5)->get();
+        $specialOffer = Product::where('special_offer', 1)->orderBy('id', 'DESC')->limit(5)->get();
+        $pecialDeal = Product::where('special_deals', 1)->orderBy('id', 'DESC')->limit(5)->get();
+        return view(
+            'frontend.index',
+            compact('categories', 'sliders', 'products', 'featured', 'hotDeals', 'specialOffer', 'pecialDeal')
+        );
     }
 
     public function dashboard()
     {
         $id = Auth::user()->id;
         $user = User::find($id);
-        return view('frontend.dashboard', compact('user'));
+        $categories = Category::orderBy('id', 'ASC')->get();
+        return view('frontend.dashboard', compact('user', 'categories'));
     }
 
     // Update Profile
     public function userProfile()
     {
+        $categories = Category::orderBy('id', 'ASC')->get();
         $id = Auth::user()->id;
         $user = User::find($id);
-        return view('frontend.profile.user_profile', compact('user'));
+        return view('frontend.profile.user_profile', compact('user', 'categories'));
     }
 
     public function userProfileUpdate(Request $request)
@@ -61,7 +76,8 @@ class IndexController extends Controller
     {
         $id = Auth::user()->id;
         $user = User::find($id);
-        return view('frontend.profile.user_change_password', compact('user'));
+        $categories = Category::orderBy('id', 'ASC')->get();
+        return view('frontend.profile.user_change_password', compact('user', 'categories'));
     }
 
     public function postChangePassword(Request $request)

@@ -1,4 +1,5 @@
 @extends('frontend.main')
+@section('title', 'Forget Password')
 @section('content')
     <div class="breadcrumb">
         <div class="container">

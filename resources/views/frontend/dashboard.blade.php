@@ -1,4 +1,5 @@
 @extends('frontend.main')
+@section('title', 'Dashboard')
 @section('content')
     <div class="breadcrumb">
         <div class="container">

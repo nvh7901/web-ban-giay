@@ -286,20 +286,20 @@
                                             </div>
                                         </div>
 
-                                        {{-- Selling and Discount --}}
+                                        {{-- Price and Discount --}}
                                         <div class="row">
                                             <div class="col-md-6">
-                                                @error('selling_price')
+                                                @error('product_price')
                                                     <div class="alert alert-danger" role="alert">
                                                         {{ $message }}
                                                     </div>
                                                 @enderror
                                                 <div class="form-group">
-                                                    <label>Product Selling Price <span class="text-danger">*</span></label>
+                                                    <label>Product Price <span class="text-danger">*</span></label>
 
                                                     <div class="input-group">
-                                                        <input type="text" class="form-control" name="selling_price"
-                                                            value="{{ $product->selling_price }}">
+                                                        <input type="text" class="form-control" name="product_price"
+                                                            value="{{ $product->product_price }}">
                                                     </div>
                                                     <!-- /.input group -->
                                                 </div>

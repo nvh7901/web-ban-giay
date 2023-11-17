@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Frontend;
 
 use Carbon\Carbon;
 use App\Models\User;
+use App\Models\Category;
 use App\Utilities\Constant;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
@@ -18,7 +19,8 @@ class AuthenticationController extends Controller
     // Login
     public function getUserLogin()
     {
-        return view('frontend.user_login');
+        $categories = Category::orderBy('id', 'ASC')->get();
+        return view('frontend.user_login', compact('categories'));
     }
 
     public function postUserLogin(Request $request)
@@ -63,7 +65,8 @@ class AuthenticationController extends Controller
     // Register
     public function getUserRegister()
     {
-        return view('frontend.user_login');
+        $categories = Category::orderBy('id', 'ASC')->get();
+        return view('frontend.user_login', compact('categories'));
     }
 
     public function postUserRegister(Request $request)
@@ -90,7 +93,8 @@ class AuthenticationController extends Controller
     // Forget Password
     public function getForgetPassword()
     {
-        return view('frontend.forget_password.email');
+        $categories = Category::orderBy('id', 'ASC')->get();
+        return view('frontend.forget_password.email', compact('categories'));
     }
     public function postForgetPassword(Request $request)
     {
@@ -116,7 +120,8 @@ class AuthenticationController extends Controller
     // Reset Password
     public function getResetPassword($token)
     {
-        return view('frontend.forget_password.reset_password', ['token' => $token]);
+        $categories = Category::orderBy('id', 'ASC')->get();
+        return view('frontend.forget_password.reset_password', ['token' => $token])->with(compact('categories'));
     }
 
     public function postResetPassword(Request $request)

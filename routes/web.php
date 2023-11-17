@@ -9,6 +9,8 @@ use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\Backend\SubCategoryController;
 use App\Http\Controllers\Frontend\AuthenticationController;
 use App\Http\Controllers\Frontend\IndexController;
+use App\Http\Controllers\Frontend\LanguageController;
+use App\Http\Controllers\Frontend\ProductController as FrontendProductController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -135,6 +137,16 @@ Route::prefix('reset-password')->group(function () {
     Route::post('/', [AuthenticationController::class, 'postResetPassword'])->name('user.post.reset-password');
 });
 
+Route::prefix('language')->group(function() {
+    Route::get('/vi', [LanguageController::class, 'viLanguage'])->name('language.vi');
+    Route::get('/en', [LanguageController::class, 'enLanguage'])->name('language.en');
+});
+
+Route::prefix('product')->group(function() {
+    Route::get('/detail/{id}/{slug}', [FrontendProductController::class, 'productDetail']);
+    Route::get('/category/{id}/{slug}', [FrontendProductController::class, 'listCategoryProduct']);
+    Route::get('/sub-category/{id}/{slug}', [FrontendProductController::class, 'listSubCategoryProduct'])->name('sub-category.slug');
+});
 Route::prefix('user')->middleware('check.user.login')->group(function () {
     Route::get('/dashboard', [IndexController::class, 'dashboard'])->name('user.dashboard');
 

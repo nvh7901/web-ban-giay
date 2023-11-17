@@ -33,7 +33,7 @@ return new class extends Migration
             $table->string('product_size_vi')->nullable();
             $table->string('product_color_en');
             $table->string('product_color_vi');
-            $table->string('selling_price')->nullable();
+            $table->string('product_price')->nullable();
             $table->string('discount_price')->nullable();
             $table->text('short_desciption_en');
             $table->text('short_desciption_vi');
