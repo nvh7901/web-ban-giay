@@ -17,7 +17,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="#">
+                            <a href="/wishlist">
                                 <i class="icon fa fa-heart">
                                 </i>
 
@@ -119,7 +119,7 @@
     <div class="main-header">
         <div class="container">
             <div class="row">
-                <div class="col-xs-12 col-sm-12 col-md-3 logo-holder">
+                <div class="col-xs-12 col-sm-12 col-md-2 logo-holder">
                     <!-- ============================================================= LOGO ============================================================= -->
                     <div class="logo"> <a href="/"> <img src="{{ asset('frontend/assets/images/logo.png') }}"
                                 alt="logo"> </a>
@@ -161,46 +161,51 @@
                 </div>
                 <!-- /.top-search-holder -->
 
-                <div class="col-xs-12 col-sm-12 col-md-2 animate-dropdown top-cart-row">
+                <div class="col-xs-12 col-sm-12 col-md-3 animate-dropdown top-cart-row">
                     <!-- ============================================================= SHOPPING CART DROPDOWN ============================================================= -->
 
                     <div class="dropdown dropdown-cart"> <a href="#" class="dropdown-toggle lnk-cart"
                             data-toggle="dropdown">
                             <div class="items-cart-inner">
                                 <div class="basket"> <i class="glyphicon glyphicon-shopping-cart"></i> </div>
-                                <div class="basket-item-count"><span class="count">2</span></div>
-                                <div class="total-price-basket"> <span class="lbl">cart -</span> <span
-                                        class="total-price"> <span class="sign">$</span><span
-                                            class="value">600.00</span> </span> </div>
+                                <div class="total-price-basket">
+                                    <span class="lbl">
+                                        @if (session()->get('language') == 'en')
+                                            cart -
+                                        @else
+                                            Giỏ hàng -
+                                        @endif
+                                    </span>
+                                    <span class="total-price">
+                                        <span class="value" id="cartSubTotal"></span>
+                                        <span class="sign">đ</span>
+                                    </span>
+                                </div>
                             </div>
                         </a>
                         <ul class="dropdown-menu">
                             <li>
-                                <div class="cart-item product-summary">
-                                    <div class="row">
-                                        <div class="col-xs-4">
-                                            <div class="image"> <a href="detail.html"><img
-                                                        src="{{ asset('frontend/assets/images/cart.jpg') }}"
-                                                        alt=""></a> </div>
-                                        </div>
-                                        <div class="col-xs-7">
-                                            <h3 class="name"><a href="index.php?page-detail">Simple Product</a>
-                                            </h3>
-                                            <div class="price">$600.00</div>
-                                        </div>
-                                        <div class="col-xs-1 action"> <a href="#"><i
-                                                    class="fa fa-trash"></i></a> </div>
-                                    </div>
+                                <div id="miniCart">
+
                                 </div>
-                                <!-- /.cart-item -->
-                                <div class="clearfix"></div>
-                                <hr>
                                 <div class="clearfix cart-total">
-                                    <div class="pull-right"> <span class="text">Sub Total :</span><span
-                                            class='price'>$600.00</span> </div>
+                                    <div class="pull-right"> <span class="text">
+                                            @if (session()->get('language') == 'en')
+                                                Sub Total :
+                                            @else
+                                                Tổng tiền :
+                                            @endif
+                                        </span>
+                                        <span class='price' id="cartSubTotal"> </span>
+                                    </div>
                                     <div class="clearfix"></div>
-                                    <a href="checkout.html"
-                                        class="btn btn-upper btn-primary btn-block m-t-20">Checkout</a>
+                                    <a href="checkout.html" class="btn btn-upper btn-primary btn-block m-t-20">
+                                        @if (session()->get('language') == 'en')
+                                            Checkout
+                                        @else
+                                            Đặt hàng
+                                        @endif
+                                    </a>
                                 </div>
                                 <!-- /.cart-total-->
 

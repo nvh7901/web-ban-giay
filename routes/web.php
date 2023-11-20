@@ -8,9 +8,11 @@ use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\Backend\SubCategoryController;
 use App\Http\Controllers\Frontend\AuthenticationController;
+use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\IndexController;
 use App\Http\Controllers\Frontend\LanguageController;
 use App\Http\Controllers\Frontend\ProductController as FrontendProductController;
+use App\Http\Controllers\Frontend\WishListController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -137,15 +139,16 @@ Route::prefix('reset-password')->group(function () {
     Route::post('/', [AuthenticationController::class, 'postResetPassword'])->name('user.post.reset-password');
 });
 
-Route::prefix('language')->group(function() {
+Route::prefix('language')->group(function () {
     Route::get('/vi', [LanguageController::class, 'viLanguage'])->name('language.vi');
     Route::get('/en', [LanguageController::class, 'enLanguage'])->name('language.en');
 });
 
-Route::prefix('product')->group(function() {
+Route::prefix('product')->group(function () {
     Route::get('/detail/{id}/{slug}', [FrontendProductController::class, 'productDetail']);
     Route::get('/category/{id}/{slug}', [FrontendProductController::class, 'listCategoryProduct']);
-    Route::get('/sub-category/{id}/{slug}', [FrontendProductController::class, 'listSubCategoryProduct'])->name('sub-category.slug');
+    Route::get('/sub-category/{id}/{slug}', [FrontendProductController::class, 'listSubCategoryProduct']);
+    Route::get('/modal/{id}', [FrontendProductController::class, 'modalViewProduct']);
 });
 Route::prefix('user')->middleware('check.user.login')->group(function () {
     Route::get('/dashboard', [IndexController::class, 'dashboard'])->name('user.dashboard');
@@ -159,5 +162,19 @@ Route::prefix('user')->middleware('check.user.login')->group(function () {
         Route::get('/', [IndexController::class, 'getChangePassword'])->name('user.get.change-password');
         Route::post('/', [IndexController::class, 'postChangePassword'])->name('user.post.change-password');
     });
+});
+
+Route::prefix('cart')->group(function() {
+    Route::post('/add/{id}', [CartController::class, 'addCart']);
+    Route::get('/mini', [CartController::class, 'addMiniCart']);
+    Route::get('/mini/remove/{rowId}', [CartController::class, 'removeMiniCart']);
+});
+
+Route::prefix('wishlist')->middleware('check.user.login')->group(function() {
+    Route::post('/add/{id}', [WishListController::class, 'addWistList']);
+    Route::get('/', [WishListController::class, 'index']);
+    Route::get('/get-wishlist', [WishListController::class, 'getWishList']);
+    Route::get('/remove/{id}', [WishListController::class, 'removetWishList']);
+    
 });
 // ------------------- End Frontend ---------------

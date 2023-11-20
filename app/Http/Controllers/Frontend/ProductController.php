@@ -51,4 +51,29 @@ class ProductController extends Controller
         $categories = Category::orderBy('id', 'ASC')->get();
         return view('frontend.product.sub_category_product', compact('products', 'categories'));
     }
+
+    public function modalViewProduct($id)
+    {
+        $product = Product::with('category', 'brand')->findOrFail($id);
+
+        $colorEn = $product->product_color_en;
+        $productColorEn = explode(',', $colorEn);
+
+        $colorVi = $product->product_color_vi;
+        $productColorVi = explode(',', $colorVi);
+
+        $sizeEn = $product->product_size_en;
+        $productSizeEn = explode(',', $sizeEn);
+
+        $sizeVi = $product->product_size_vi;
+        $productSizeVi = explode(',', $sizeVi);
+
+        return response()->json(array(
+            'product' => $product,
+            'color_en' => $productColorEn,
+            'color_vi' => $productColorVi,
+            'size_en' => $productSizeEn,
+            'size_vi' => $productSizeVi,
+        ));
+    }
 }

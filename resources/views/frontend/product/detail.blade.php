@@ -80,7 +80,7 @@
                             </div><!-- /.gallery-holder -->
                             <div class="col-sm-6 col-md-7 product-info-block">
                                 <div class="product-info">
-                                    <h1 class="name">
+                                    <h1 class="name" id="pname">
                                         @if (session()->get('language') == 'en')
                                             {{ $product->product_name_en }}
                                         @else
@@ -216,7 +216,7 @@
 
                                                     </label>
                                                     <select class="form-control unicase-form-control selectpicker"
-                                                        style="display: none;" id="color">
+                                                        style="display: none;" id="size">
                                                         @if (session()->get('language') == 'en')
                                                             <option selected="" disabled="">-- Choose Size --
                                                             </option>
@@ -267,15 +267,16 @@
                                                 </div>
                                             </div>
 
+                                            <input type="hidden" id="product_id" value="{{ $product->id }}" min="1">
                                             <div class="col-sm-7">
-                                                <a href="#" class="btn btn-primary">
+                                                <button type="submit" onclick="addCart()" class="btn btn-primary">
                                                     <i class="fa fa-shopping-cart inner-right-vs"></i>
                                                     @if (session()->get('language') == 'en')
                                                         ADD TO CART
                                                     @else
                                                         THÊM VÀO GIỎ HÀNG
                                                     @endif
-                                                </a>
+                                                </button>
                                             </div>
 
 
@@ -611,7 +612,8 @@
                                                                     <li class="lnk">
                                                                         <a data-toggle="tooltip" class="add-to-cart"
                                                                             href="detail.html" title="Compare">
-                                                                            <i class="fa fa-signal" aria-hidden="true"></i>
+                                                                            <i class="fa fa-signal"
+                                                                                aria-hidden="true"></i>
                                                                         </a>
                                                                     </li>
                                                                 </ul>

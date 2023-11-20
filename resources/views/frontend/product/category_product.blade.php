@@ -7,35 +7,7 @@
     @endif
 @endsection
 @section('content')
-    <div style="margin-top: 20px">
-        <div class="container">
-
-            <nav aria-label="breadcrumb">
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item">
-                        <a href="/">
-                            @if (session()->get('language') == 'en')
-                                Home
-                            @else
-                                Trang chủ
-                            @endif
-                        </a>
-                    </li>
-                    <li class="breadcrumb-item active" aria-current="page">
-                        @if (session()->get('language') == 'en')
-                            Category
-                        @else
-                            Loại sản phẩm
-                        @endif
-                    </li>
-                </ol>
-            </nav>
-
-        </div>
-    </div>
-
-
-    <div class="body-content">
+    <div class="body-content outer-top-xs">
         <div class="container">
             <div class="row">
                 <div class="col-md-3 sidebar">
