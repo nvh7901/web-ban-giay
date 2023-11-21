@@ -13,7 +13,7 @@
                                 </li>
                                 <li class="breadcrumb-item" aria-current="page"><a href="/admin/dashboard">Dashboard</a>
                                 </li>
-                                <li class="breadcrumb-item" aria-current="page"><a href="/admin/sub-category">List
+                                <li class="breadcrumb-item" aria-current="page"><a href="/admin/slider">List
                                         Sliders</a>
                                 </li>
                                 <li class="breadcrumb-item active" aria-current="page">Create Slider</li>

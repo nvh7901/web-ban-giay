@@ -92,12 +92,26 @@
                     </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="{{ route('slider.index') }}"><i class="ti-more"></i>All Slider</a></li>
+                    <li><a href="{{ route('slider.index') }}"><i class="ti-more"></i>All Sliders</a></li>
                     <li><a href="{{ route('slider.create') }}"><i class="ti-more"></i>Create Slider</a>
                     </li>
                 </ul>
             </li>
-
+            {{-- Slider --}}
+            <li class="treeview {{ request()->segment(2) == 'coupon' ? 'active' : '' }}">
+                <a href="{{ route('product.index') }}">
+                    <i data-feather="grid"></i>
+                    <span>Coupon</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-right pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="{{ route('coupon.index') }}"><i class="ti-more"></i>All Coupons</a></li>
+                    <li><a href="{{ route('coupon.create') }}"><i class="ti-more"></i>Create Coupon</a>
+                    </li>
+                </ul>
+            </li>
 
 
 
