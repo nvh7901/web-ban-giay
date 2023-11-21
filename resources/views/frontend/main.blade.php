@@ -233,7 +233,7 @@
                     const Toast = Swal.mixin({
                         toast: true,
                         position: 'top-end',
-                        
+
                         showConfirmButton: false,
                         timer: 3000
                     })
@@ -251,6 +251,12 @@
                             icon: 'error',
                             title: data.error
                         })
+                    }
+                },
+                error: function(xhr, status, error) {
+                    if (xhr.status === 200) { // Unauthorized status code
+                        // Redirect user to login page
+                        window.location.href = '/login';
                     }
                 }
             });
@@ -458,6 +464,139 @@
                 }
             });
 
+        }
+    </script>
+
+    {{-- My Cart --}}
+    <script>
+        function cart() {
+            $.ajax({
+                type: 'GET',
+                url: '/cart/get-my-cart',
+                dataType: 'json',
+                success: function(response) {
+
+                    var rows = ""
+                    $.each(response.carts, function(key, value) {
+                        rows +=
+                            `<tr>
+                                <td class="col-md-2"><img src="/upload/products/${value.options.image} " alt="imga" style="width:100px; height:100px;"></td>
+                                
+                                <td class="col-md-2">
+                                    <div class="product-name"><a href="#">${value.name}</a></div>
+                                    
+                                    <div class="price"> 
+                                            ${formatCurrency(value.price)}
+                                    </div>
+                                </td>
+
+
+                                <td class="col-md-2">
+                                    <strong>
+                                        ${value.options.color} 
+                                    </strong> 
+                                </td>
+
+                                <td class="col-md-2">
+                                    ${value.options.size == null
+                                        ? `<span> .... </span>`
+                                        :
+                                    `<strong>${value.options.size} </strong>` 
+                                    }           
+                                </td>
+
+                                <td class="col-md-2">
+
+                                    ${value.qty > 1
+
+                                        ? `<button type="submit" class="btn btn-danger btn-sm" id="${value.rowId}" onclick="cartDecrement(this.id)" >-</button> `
+                                        : `<button type="submit" class="btn btn-danger btn-sm" disabled >-</button> `
+                                    }
+                                
+
+                                    <input type="text" value="${value.qty}" min="1" max="100" disabled="" style="width:25px;" >  
+
+                                    <button type="submit" class="btn btn-success btn-sm" id="${value.rowId}" onclick="cartIncrement(this.id)" >+</button>    
+                                
+                                </td>
+
+                                <td class="col-md-2">
+                                    <strong>${formatCurrency(value.subtotal)} </strong> 
+                                </td>
+
+                                
+                                <td class="col-md-1 close-btn">
+                                    <button type="submit" class="" id="${value.rowId}" onclick="cartRemove(this.id)"><i class="fa fa-times"></i></button>
+                                </td>
+                            </tr>`
+                    });
+
+                    $('#myCart').html(rows);
+                }
+            })
+
+        }
+        cart();
+
+        function cartRemove(id) {
+            $.ajax({
+                type: 'GET',
+                url: '/cart/my-cart/remove/' + id,
+                dataType: 'json',
+                success: function(data) {
+                    cart();
+                    miniCart();
+                    $('#couponField').show();
+                    $('#coupon_name').val('');
+
+                    // Start Message 
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'top-end',
+                        showConfirmButton: false,
+                        timer: 3000
+                    })
+                    if ($.isEmptyObject(data.error)) {
+                        Toast.fire({
+                            type: 'success',
+                            icon: 'success',
+                            title: data.success
+                        })
+
+                    } else {
+                        Toast.fire({
+                            type: 'error',
+                            icon: 'error',
+                            title: data.error
+                        })
+
+                    }
+                }
+            });
+        }
+
+        function cartIncrement(rowId) {
+            $.ajax({
+                type: 'GET',
+                url: "/cart/my-cart/cart-increment/" + rowId,
+                dataType: 'json',
+                success: function(data) {
+                    cart();
+                    miniCart();
+                }
+            });
+        }
+
+        function cartDecrement(rowId) {
+            $.ajax({
+                type: 'GET',
+                url: "/cart/my-cart/cart-decrement/" + rowId,
+                dataType: 'json',
+                success: function(data) {
+                    cart();
+                    miniCart();
+                }
+            });
         }
     </script>
 </body>

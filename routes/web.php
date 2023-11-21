@@ -146,7 +146,7 @@ Route::prefix('admin')->middleware('check.admin.login')->group(function () {
             Route::post('/update/{id}', [DistrictController::class, 'update'])->name('district.update');
             Route::get('/delete/{id}', [DistrictController::class, 'delete'])->name('district.delete');
             // Get dropdown district
-            Route::get('/{province_id}',[DistrictController::class, 'getDropDownDistrict']);
+            Route::get('/{province_id}', [DistrictController::class, 'getDropDownDistrict']);
         });
         // Huyện
         Route::prefix('ward')->group(function () {
@@ -211,10 +211,15 @@ Route::prefix('user')->middleware('check.user.login')->group(function () {
     });
 });
 
-Route::prefix('cart')->group(function () {
+Route::prefix('cart')->middleware('check.user.login')->group(function () {
     Route::post('/add/{id}', [CartController::class, 'addCart']);
     Route::get('/mini', [CartController::class, 'addMiniCart']);
     Route::get('/mini/remove/{rowId}', [CartController::class, 'removeMiniCart']);
+    Route::get('/my-cart', [CartController::class, 'myCart'])->name('my-cart');
+    Route::get('/get-my-cart', [CartController::class, 'getMyCart']);
+    Route::get('/my-cart/remove/{id}', [CartController::class, 'removeCart']);
+    Route::get('/my-cart/cart-increment/{id}', [CartController::class, 'cartIncrement']);
+    Route::get('/my-cart/cart-decrement/{id}', [CartController::class, 'cartDecrement']);
 });
 
 Route::prefix('wishlist')->middleware('check.user.login')->group(function () {

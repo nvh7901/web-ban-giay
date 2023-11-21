@@ -29,7 +29,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="#">
+                            <a href="/cart/my-cart">
                                 <i class="icon fa fa-shopping-cart"></i>
                                 @if (session()->get('language') == 'en')
                                     Cart

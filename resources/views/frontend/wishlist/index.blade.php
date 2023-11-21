@@ -1,5 +1,11 @@
 @extends('frontend.main')
-@section('title', 'Flipmart Shose')
+@section('title')
+    @if (session()->get('language') == 'en')
+        My Wishlist
+    @else
+        Sản Phẩm Yêu Thích
+    @endif
+@endsection
 @section('content')
     <div class="body-content outer-top-xs" style="margin-bottom: 20px">
         <div class="container">
@@ -20,7 +26,7 @@
                                     </tr>
                                 </thead>
                                 <tbody id="wishlist">
-                                    
+
                                 </tbody>
                             </table>
                         </div>

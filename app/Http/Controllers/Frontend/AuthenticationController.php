@@ -36,7 +36,7 @@ class AuthenticationController extends Controller
         ];
 
         if (Auth::attempt($params)) {
-            return redirect()->intended('/');
+            return redirect('/');
         } else {
             $user = User::where('email', $request->email)->first();
             if ($user && $user->level != Constant::user_level_user) {
