@@ -84,9 +84,9 @@
             </li>
             {{-- Slider --}}
             <li class="treeview {{ request()->segment(2) == 'slider' ? 'active' : '' }}">
-                <a href="{{ route('product.index') }}">
+                <a href="{{ route('slider.index') }}">
                     <i data-feather="grid"></i>
-                    <span>Slider</span>
+                    <span>Sliders</span>
                     <span class="pull-right-container">
                         <i class="fa fa-angle-right pull-right"></i>
                     </span>
@@ -97,11 +97,11 @@
                     </li>
                 </ul>
             </li>
-            {{-- Slider --}}
+            {{-- Coupon --}}
             <li class="treeview {{ request()->segment(2) == 'coupon' ? 'active' : '' }}">
-                <a href="{{ route('product.index') }}">
+                <a href="{{ route('coupon.index') }}">
                     <i data-feather="grid"></i>
-                    <span>Coupon</span>
+                    <span>Coupons</span>
                     <span class="pull-right-container">
                         <i class="fa fa-angle-right pull-right"></i>
                     </span>
@@ -112,7 +112,27 @@
                     </li>
                 </ul>
             </li>
-
+            {{-- Ship --}}
+            <li class="treeview {{ request()->segment(2) == 'ship' ? 'active' : '' }}">
+                <a href="#">
+                    <i data-feather="grid"></i>
+                    <span>Ships</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-right pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li>
+                        <a href="{{ route('province.index') }}"><i class="ti-more"></i>All Provinces</a>
+                    </li>
+                    <li>
+                        <a href="{{ route('district.index') }}"><i class="ti-more"></i>All Districts</a>
+                    </li>
+                    <li>
+                        <a href="{{ route('ward.index') }}"><i class="ti-more"></i>All Wards</a>
+                    </li>
+                </ul>
+            </li>
 
 
             <li class="header nav-small-cap">User Interface</li>

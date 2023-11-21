@@ -5,9 +5,12 @@ use App\Http\Controllers\Backend\AdminProfileController;
 use App\Http\Controllers\Backend\BrandController;
 use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\CouponController;
+use App\Http\Controllers\Backend\DistrictController;
 use App\Http\Controllers\Backend\ProductController;
+use App\Http\Controllers\Backend\ProvinceController;
 use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\Backend\SubCategoryController;
+use App\Http\Controllers\Backend\WardController;
 use App\Http\Controllers\Frontend\AuthenticationController;
 use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\IndexController;
@@ -122,6 +125,39 @@ Route::prefix('admin')->middleware('check.admin.login')->group(function () {
         Route::post('/update/{id}', [CouponController::class, 'update'])->name('coupon.update');
         Route::get('/delete/{id}', [CouponController::class, 'delete'])->name('coupon.delete');
     });
+
+    // Ship
+    Route::prefix('ship')->group(function () {
+        // Tỉnh
+        Route::prefix('province')->group(function () {
+            Route::get('/', [ProvinceController::class, 'index'])->name('province.index');
+            Route::get('/create', [ProvinceController::class, 'create'])->name('province.create');
+            Route::post('/store', [ProvinceController::class, 'store'])->name('province.store');
+            Route::get('/edit/{id}', [ProvinceController::class, 'edit'])->name('province.edit');
+            Route::post('/update/{id}', [ProvinceController::class, 'update'])->name('province.update');
+            Route::get('/delete/{id}', [ProvinceController::class, 'delete'])->name('province.delete');
+        });
+        // Quận
+        Route::prefix('district')->group(function () {
+            Route::get('/', [DistrictController::class, 'index'])->name('district.index');
+            Route::get('/create', [DistrictController::class, 'create'])->name('district.create');
+            Route::post('/store', [DistrictController::class, 'store'])->name('district.store');
+            Route::get('/edit/{id}', [DistrictController::class, 'edit'])->name('district.edit');
+            Route::post('/update/{id}', [DistrictController::class, 'update'])->name('district.update');
+            Route::get('/delete/{id}', [DistrictController::class, 'delete'])->name('district.delete');
+            // Get dropdown district
+            Route::get('/{province_id}',[DistrictController::class, 'getDropDownDistrict']);
+        });
+        // Huyện
+        Route::prefix('ward')->group(function () {
+            Route::get('/', [WardController::class, 'index'])->name('ward.index');
+            Route::get('/create', [WardController::class, 'create'])->name('ward.create');
+            Route::post('/store', [WardController::class, 'store'])->name('ward.store');
+            Route::get('/edit/{id}', [WardController::class, 'edit'])->name('ward.edit');
+            Route::post('/update/{id}', [WardController::class, 'update'])->name('ward.update');
+            Route::get('/delete/{id}', [WardController::class, 'delete'])->name('ward.delete');
+        });
+    });
 });
 // -------------------End Admin -------------------
 
@@ -175,17 +211,16 @@ Route::prefix('user')->middleware('check.user.login')->group(function () {
     });
 });
 
-Route::prefix('cart')->group(function() {
+Route::prefix('cart')->group(function () {
     Route::post('/add/{id}', [CartController::class, 'addCart']);
     Route::get('/mini', [CartController::class, 'addMiniCart']);
     Route::get('/mini/remove/{rowId}', [CartController::class, 'removeMiniCart']);
 });
 
-Route::prefix('wishlist')->middleware('check.user.login')->group(function() {
+Route::prefix('wishlist')->middleware('check.user.login')->group(function () {
     Route::post('/add/{id}', [WishListController::class, 'addWistList']);
     Route::get('/', [WishListController::class, 'index']);
     Route::get('/get-wishlist', [WishListController::class, 'getWishList']);
     Route::get('/remove/{id}', [WishListController::class, 'removetWishList']);
-    
 });
 // ------------------- End Frontend ---------------
