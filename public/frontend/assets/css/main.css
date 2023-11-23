@@ -236,7 +236,7 @@ img[src="assets/images/blank.gif"] {
   padding-left: 75px;
 }
 .inner-left-md {
-  padding-left: 60px;
+  padding-left: 20px;
 }
 .inner-left-sm {
   padding-left: 45px;
@@ -1314,7 +1314,7 @@ header{background:#157ed2}
   position: relative;
 }
 .top-cart-row .dropdown-cart .lnk-cart .items-cart-inner .total-price-basket {
-    padding: 12px 12px 13px 15px;
+    padding: 12px 30px 13px 15px;
     font-family: 'Open Sans', sans-serif;
     text-transform: uppercase;
     float: left;
@@ -5411,7 +5411,7 @@ age-container #owl-main .owl-next {
 .shopping-cart .cart-shopping-total table thead tr th {
   background-color: #fafafa;
   text-align: right;
-  padding: 24px 50px;
+  padding: 24px 0;
 
 }
 .shopping-cart .cart-shopping-total table thead tr th .cart-sub-total {

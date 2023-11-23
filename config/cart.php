@@ -68,9 +68,9 @@ return [
 
     'format' => [
 
-        'decimals' => 2,
+        'decimals' => 0,
 
-        'decimal_point' => '.',
+        'decimal_point' => '',
 
         'thousand_separator' => ',',
 

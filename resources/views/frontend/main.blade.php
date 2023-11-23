@@ -58,7 +58,7 @@
 
     <!-- Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
+        <div class="modal-dialog" style="width: 730px !important;">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel"><span id="pname"></span></h5>
@@ -80,29 +80,66 @@
 
                         <div class="col-md-4">
                             <ul class="list-group">
-                                <li class="list-group-item">Price:
+                                <li class="list-group-item">
+                                    @if (session()->get('language') == 'en')
+                                        Price:
+                                    @else
+                                        Giá:
+                                    @endif
                                     <div class="product-price">
                                         <span class="price text-danger" id="pprice">
 
                                         </span>
                                     </div>
                                 </li>
-                                <li class="list-group-item">Old Price:
+                                <li class="list-group-item">
+                                    @if (session()->get('language') == 'en')
+                                        Old Price:
+                                    @else
+                                        Giá cũ:
+                                    @endif
                                     <div class="product-price">
                                         <span class="price text-danger">
                                             <del id="oldprice"></del>
                                         </span>
                                     </div>
                                 </li>
-                                <li class="list-group-item">Product Code: <strong id="pcode"></strong></li>
-                                <li class="list-group-item">Category: <strong id="pcategory"></strong></li>
-                                <li class="list-group-item">Brand: <strong id="pbrand"></strong></li>
+                                <li class="list-group-item">
+                                    @if (session()->get('language') == 'en')
+                                        Product Code:
+                                    @else
+                                        Code Sản Phẩm:
+                                    @endif
+                                    <strong id="pcode"></strong>
+                                </li>
+                                <li class="list-group-item">
+                                    @if (session()->get('language') == 'en')
+                                        Category:
+                                    @else
+                                        Loại Sản Phẩm:
+                                    @endif
+                                    <strong id="pcategory"></strong>
+                                </li>
+                                <li class="list-group-item">
+                                    @if (session()->get('language') == 'en')
+                                        Brand:
+                                    @else
+                                        Hãng:
+                                    @endif
+                                    <strong id="pbrand"></strong>
+                                </li>
                             </ul>
                         </div>
 
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label for="color">Choose Color</label>
+                                <label for="color">
+                                    @if (session()->get('language') == 'en')
+                                        Choose Color
+                                    @else
+                                        Chọn Màu
+                                    @endif
+                                </label>
                                 <select class="form-control" id="color" name="color">
 
 
@@ -110,7 +147,13 @@
                             </div> <!-- // end form group -->
 
                             <div class="form-group" id="sizeArea">
-                                <label for="size">Choose Size</label>
+                                <label for="size">
+                                    @if (session()->get('language') == 'en')
+                                        Choose Size
+                                    @else
+                                        Chọn Size
+                                    @endif
+                                </label>
                                 <select class="form-control" id="size" name="size">
                                     <option>1</option>
 
@@ -142,7 +185,11 @@
                         </button>
                         <input type="hidden" id="product_id">
                         <button type="button" class="btn btn-primary" onclick="addCart()">
-                            Add To Cart
+                            @if (session()->get('language') == 'en')
+                                Add To Cart
+                            @else
+                                Thêm vào giỏ hàng
+                            @endif
                         </button>
                     </div>
                 </div>
@@ -268,32 +315,40 @@
                 url: '/cart/mini',
                 dataType: 'json',
                 success: function(response) {
-                    $('span[id="cartSubTotal"]').text(response.cartTotal);
+                    $('span[id="cartSubTotal"]').text(formatCurrency(response.cartTotal));
                     $('#cartQty').text(response.cartQty);
                     var miniCart = ""
 
                     $.each(response.carts, function(key, value) {
-                        miniCart += `<div class="cart-item product-summary">
+                        miniCart +=
+                            `<div class="cart-item product-summary">
                             <div class="row">
                                 <div class="col-xs-4">
-                                <div class="image"> 
-                                    <a href="detail.html">
-                                        <img src="/upload/products/${value.options.image}" alt="">
-                                    </a> 
-                                </div>
+                                    <div class="image"> 
+                                        <a href="detail.html">
+                                            <img src="/upload/products/${value.options.image}" style="width:50px; height:50px;">
+                                        </a> 
+                                    </div>
                                 </div>
                                 <div class="col-xs-7">
-                                <h3 class="name"><a href="index.php?page-detail">${value.name}</a></h3>
-                                <div class="price"> ${value.price} * ${value.qty} </div>
+                                    <h3 class="name">
+                                        <a href="">${value.name}</a>
+                                    </h3>
+                                    <div class="price"> 
+                                        ${formatCurrency(value.price)} * ${value.qty} 
+                                    </div>
                                 </div>
                                 <div class="col-xs-1 action"> 
-                                <button type="submit" id="${value.rowId}" onclick="miniCartRemove(this.id)"><i class="fa fa-trash"></i></button> </div>
+                                    <button type="submit" id="${value.rowId}" onclick="miniCartRemove(this.id)" class="btn btn-danger btn-sm">
+                                        <i class="fa fa-trash"></i>
+                                    </button> 
+                                </div>
+                                </div>
                             </div>
-                            </div>
-                            </div>
+                        </div>
                             <!-- /.cart-item -->
-                            <div class="clearfix"></div>
-                            <hr>`
+                        <div class="clearfix"></div>
+                        <hr>`
                     });
 
                     $('#miniCart').html(miniCart);
@@ -390,26 +445,35 @@
                     $.each(response, function(key, value) {
                         var discount = (100 - value.product.discount_price) / 100;
                         var sellingPrice = value.product.product_price * discount;
-                        rows += `<tr>
-                    <td class="col-md-2"><img src="/upload/products/${value.product.product_thambnail} " alt="imga"></td>
-                    <td class="col-md-7">
-                        <div class="product-name"><a href="#">${value.product.product_name_en}</a></div>
-                         
-                        <div class="price">
-                        ${value.product.discount_price == null
-                            ? `${formatCurrency(value.product.product_price)}`
-                            :
-                            `${formatCurrency(sellingPrice)} <span>${formatCurrency(value.product.product_price)}</span>`
-                        }    
-                        </div>
-                    </td>
-        <td class="col-md-2">
-            <button class="btn btn-primary icon" type="button" title="Add Cart" data-toggle="modal" data-target="#exampleModal" id="${value.product_id}" onclick="productView(this.id)"> Add to Cart </button>
-        </td>
-        <td class="col-md-1 close-btn">
-            <button type="submit" class="" id="${value.id}" onclick="wishlistRemove(this.id)"><i class="fa fa-times"></i></button>
-        </td>
-                </tr>`
+                        rows +=
+                            `<tr>
+                                <td class="col-md-2"><img src="/upload/products/${value.product.product_thambnail}"></td>
+                                <td class="col-md-7">
+                                    <div class="product-name">
+                                        <a href="#">${value.product.product_name_en}</a>
+                                    </div>
+                                        
+                                    <div class="price">
+                                        ${value.product.discount_price == null
+                                            ? `${formatCurrency(value.product.product_price)}`
+                                            :
+                                            `${formatCurrency(sellingPrice)} <span>${formatCurrency(value.product.product_price)}</span>`
+                                        }    
+                                    </div>
+                                </td>
+                                <td class="col-md-2">
+                                    <button class="btn btn-primary icon" type="button" data-toggle="modal" data-target="#exampleModal" id="${value.product_id}" onclick="productView(this.id)"> 
+                                        @if (session()->get('language') == 'en')
+                                            Add to Cart 
+                                        @else
+                                            Thêm vào giỏ hàng
+                                        @endif
+                                    </button>
+                                </td>
+                                <td class="col-md-1 close-btn">
+                                    <button type="submit" class="btn btn-danger btn-sm" id="${value.id}" onclick="wishlistRemove(this.id)"><i class="fa fa-times"></i></button>
+                                </td>
+                            </tr>`
                     });
 
                     $('#wishlist').html(rows);
@@ -434,8 +498,6 @@
                 dataType: 'json',
                 success: function(data) {
                     wishList();
-
-                    // Start Message 
                     const Toast = Swal.mixin({
                         toast: true,
                         position: 'top-end',
@@ -458,12 +520,8 @@
                         })
 
                     }
-
-                    // End Message 
-
                 }
             });
-
         }
     </script>
 
@@ -509,14 +567,14 @@
 
                                     ${value.qty > 1
 
-                                        ? `<button type="submit" class="btn btn-danger btn-sm" id="${value.rowId}" onclick="cartDecrement(this.id)" >-</button> `
+                                        ? `<button type="submit" class="btn btn-danger btn-sm" id="${value.rowId}" onclick="cartDecrement(this.id)" ><i class="fa fa-minus" aria-hidden="true"></i></button> `
                                         : `<button type="submit" class="btn btn-danger btn-sm" disabled >-</button> `
                                     }
                                 
 
                                     <input type="text" value="${value.qty}" min="1" max="100" disabled="" style="width:25px;" >  
 
-                                    <button type="submit" class="btn btn-success btn-sm" id="${value.rowId}" onclick="cartIncrement(this.id)" >+</button>    
+                                    <button type="submit" class="btn btn-success btn-sm" id="${value.rowId}" onclick="cartIncrement(this.id)" ><i class="fa fa-plus" aria-hidden="true"></i></button>    
                                 
                                 </td>
 
@@ -526,7 +584,7 @@
 
                                 
                                 <td class="col-md-1 close-btn">
-                                    <button type="submit" class="" id="${value.rowId}" onclick="cartRemove(this.id)"><i class="fa fa-times"></i></button>
+                                    <button type="submit" id="${value.rowId}" onclick="cartRemove(this.id)" class="btn btn-danger btn-sm"><i class="fa fa-times"></i></button>
                                 </td>
                             </tr>`
                     });
@@ -546,6 +604,7 @@
                 success: function(data) {
                     cart();
                     miniCart();
+                    couponCalculation();
                     $('#couponField').show();
                     $('#coupon_name').val('');
 
@@ -583,6 +642,7 @@
                 success: function(data) {
                     cart();
                     miniCart();
+                    couponCalculation();
                 }
             });
         }
@@ -595,8 +655,176 @@
                 success: function(data) {
                     cart();
                     miniCart();
+                    couponCalculation();
                 }
             });
+        }
+    </script>
+
+    {{-- Apply Coupon --}}
+    <script>
+        function applyCoupon() {
+            var coupon_name = $('#coupon_name').val();
+            $.ajax({
+                type: 'POST',
+                dataType: 'json',
+                data: {
+                    coupon_name: coupon_name
+                },
+                url: "{{ url('/cart/coupon-apply') }}",
+                success: function(data) {
+                    couponCalculation();
+                    if (data.validity == true) {
+                        $('#couponField').hide();
+                    }
+
+                    // Start Message 
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'top-end',
+
+                        showConfirmButton: false,
+                        timer: 3000
+                    })
+                    if ($.isEmptyObject(data.error)) {
+                        Toast.fire({
+                            type: 'success',
+                            icon: 'success',
+                            title: data.success
+                        })
+
+                    } else {
+                        Toast.fire({
+                            type: 'error',
+                            icon: 'error',
+                            title: data.error
+                        })
+
+                    }
+                }
+            })
+        }
+
+        function couponCalculation() {
+            $.ajax({
+                type: 'GET',
+                url: "{{ url('/cart/coupon-calculation') }}",
+                dataType: 'json',
+                success: function(data) {
+                    cart();
+                    if (data.total) {
+                        $('#couponCalField').html(
+                            `<tr>
+                                <th>
+                                    <div class="cart-grand-total">
+                                        @if (session()->get('language') == 'en')
+                                            Grand Total: 
+                                        @else
+                                            Tổng cộng:
+                                        @endif
+                                        <span class="inner-left-md">${formatCurrency(data.total)} ₫</span>
+                                    </div>
+                                </th>
+                            </tr>`
+                        )
+
+                    } else {
+
+                        $('#couponCalField').html(
+                            `<tr>
+                                <th>
+                                    <div class="cart-sub-total">
+                                        @if (session()->get('language') == 'en')
+                                            Sub Total:
+                                        @else
+                                            Tổng tiền :
+                                        @endif
+                                            
+                                        <span class="inner-left-md">${formatCurrency(data.subtotal)} ₫</span>
+                                    </div>
+                                    <div class="cart-sub-total">
+                                        @if (session()->get('language') == 'en')
+                                            Coupon Name:
+                                        @else
+                                            Tên mã giảm giá:
+                                        @endif
+                                        <span class="inner-left-md">${data.coupon_name}</span>
+                                        <button type="submit" onclick="couponRemove()" class="btn btn-danger btn-sm">
+                                            <i class="fa fa-times"></i>  
+                                            </button>
+                                    </div>
+
+                                    <div class="cart-sub-total">
+                                        
+                                        @if (session()->get('language') == 'en')
+                                            Discount Amount:
+                                        @else
+                                            Số tiền chiết khấu:
+                                        @endif
+                                        <span class="inner-left-md">${formatCurrency(data.discount_amount)}</span>
+                                    </div>
+
+
+                                    <div class="cart-grand-total">
+                                        @if (session()->get('language') == 'en')
+                                            Grand Total:
+                                        @else
+                                            Tổng cộng:
+                                        @endif
+                                        <span class="inner-left-md">${formatCurrency(data.total_amount)}</span>
+                                    </div>
+                                </th>
+                            </tr>`
+                        )
+
+                    }
+                }
+
+            });
+        }
+        couponCalculation();
+
+        function couponRemove() {
+            $.ajax({
+                type: 'GET',
+                url: "{{ url('/cart/coupon-remove') }}",
+                dataType: 'json',
+                success: function(data) {
+                    couponCalculation();
+                    cart();
+                    $('#couponField').show();
+                    $('#coupon_name').val('');
+
+
+                    // Start Message 
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'top-end',
+
+                        showConfirmButton: false,
+                        timer: 3000
+                    })
+                    if ($.isEmptyObject(data.error)) {
+                        Toast.fire({
+                            type: 'success',
+                            icon: 'success',
+                            title: data.success
+                        })
+
+                    } else {
+                        Toast.fire({
+                            type: 'error',
+                            icon: 'error',
+                            title: data.error
+                        })
+
+                    }
+
+                    // End Message 
+
+                }
+            });
+
         }
     </script>
 </body>

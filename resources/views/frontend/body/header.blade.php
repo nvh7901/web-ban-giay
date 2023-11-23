@@ -178,12 +178,12 @@
                                     </span>
                                     <span class="total-price">
                                         <span class="value" id="cartSubTotal"></span>
-                                        <span class="sign">đ</span>
+                                        <span class="sign"> ₫</span>
                                     </span>
                                 </div>
                             </div>
                         </a>
-                        <ul class="dropdown-menu">
+                        <ul class="dropdown-menu" style="width: 246px !important">
                             <li>
                                 <div id="miniCart">
 
@@ -196,7 +196,8 @@
                                                 Tổng tiền :
                                             @endif
                                         </span>
-                                        <span class='price' id="cartSubTotal"> </span>
+                                        <span class=price id="cartSubTotal"> </span>
+                                        <span class="price"> ₫</span>
                                     </div>
                                     <div class="clearfix"></div>
                                     <a href="checkout.html" class="btn btn-upper btn-primary btn-block m-t-20">

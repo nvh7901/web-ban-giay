@@ -220,6 +220,10 @@ Route::prefix('cart')->middleware('check.user.login')->group(function () {
     Route::get('/my-cart/remove/{id}', [CartController::class, 'removeCart']);
     Route::get('/my-cart/cart-increment/{id}', [CartController::class, 'cartIncrement']);
     Route::get('/my-cart/cart-decrement/{id}', [CartController::class, 'cartDecrement']);
+    // Apply Coupon
+    Route::post('/coupon-apply', [CartController::class, 'couponApply']);
+    Route::get('/coupon-calculation', [CartController::class, 'couponCalculation']);
+    Route::get('/coupon-remove', [CartController::class, 'couponRemove']);
 });
 
 Route::prefix('wishlist')->middleware('check.user.login')->group(function () {
