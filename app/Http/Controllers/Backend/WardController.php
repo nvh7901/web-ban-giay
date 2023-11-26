@@ -69,9 +69,10 @@ class WardController extends Controller
      */
     public function edit($id)
     {
-        $dataProvinces = Province::latest()->get();
-        $dataDistricts = District::latest()->get();
+        $dataProvinces = Province::orderBy('id', 'DESC')->get();
         $ward = Ward::findOrFail($id);
+        $province_id = $ward->province_id;
+        $dataDistricts = District::where('province_id', $province_id)->orderBy('id', 'DESC')->get();
         return view('admin.ship.ward.edit', compact('dataProvinces', 'dataDistricts', 'ward'));
     }
 

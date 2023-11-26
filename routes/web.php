@@ -13,6 +13,7 @@ use App\Http\Controllers\Backend\SubCategoryController;
 use App\Http\Controllers\Backend\WardController;
 use App\Http\Controllers\Frontend\AuthenticationController;
 use App\Http\Controllers\Frontend\CartController;
+use App\Http\Controllers\Frontend\CheckoutController;
 use App\Http\Controllers\Frontend\IndexController;
 use App\Http\Controllers\Frontend\LanguageController;
 use App\Http\Controllers\Frontend\ProductController as FrontendProductController;
@@ -226,10 +227,19 @@ Route::prefix('cart')->middleware('check.user.login')->group(function () {
     Route::get('/coupon-remove', [CartController::class, 'couponRemove']);
 });
 
+// Đặt Hàng
+Route::prefix('checkout')->middleware('check.user.login')->group(function () {
+    Route::get('/', [CheckoutController::class, 'checkout'])->name('checkout');
+    Route::post('/store', [CheckoutController::class, 'checkoutStore'])->name('checkout.store');
+});
+
 Route::prefix('wishlist')->middleware('check.user.login')->group(function () {
     Route::post('/add/{id}', [WishListController::class, 'addWistList']);
     Route::get('/', [WishListController::class, 'index']);
     Route::get('/get-wishlist', [WishListController::class, 'getWishList']);
     Route::get('/remove/{id}', [WishListController::class, 'removetWishList']);
 });
+
+Route::get('/district/{province_id}', [CheckoutController::class, 'getDataDistrict']);
+Route::get('/ward/{district_id}', [CheckoutController::class, 'getDataWard']);
 // ------------------- End Frontend ---------------

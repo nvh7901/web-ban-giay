@@ -100,10 +100,11 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
+        $product = Product::findOrFail($id);
+        $categoryId = $product->category_id;
         $dataBrands = Brand::orderBy('id', 'DESC')->get();
         $dataCategories = Category::orderBy('id', 'DESC')->get();
-        $dataSubCategories = SubCategory::orderBy('id', 'DESC')->get();
-        $product = Product::findOrFail($id);
+        $dataSubCategories = SubCategory::where('category_id', $categoryId)->orderBy('id', 'DESC')->get();
         return view('admin.product.edit', compact('dataBrands', 'dataCategories', 'dataSubCategories', 'product'));
     }
 
@@ -189,7 +190,7 @@ class ProductController extends Controller
     public function inactive($id)
     {
         Product::findOrFail($id)->update(['status' => 0]);
-        
+
         $notification = array(
             'message' => 'Inactive Product Successfully',
             'alert-type' => 'success',

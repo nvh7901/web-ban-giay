@@ -640,9 +640,9 @@
                 url: "/cart/my-cart/cart-increment/" + rowId,
                 dataType: 'json',
                 success: function(data) {
+                    couponCalculation();
                     cart();
                     miniCart();
-                    couponCalculation();
                 }
             });
         }
@@ -653,9 +653,9 @@
                 url: "/cart/my-cart/cart-decrement/" + rowId,
                 dataType: 'json',
                 success: function(data) {
+                    couponCalculation();
                     cart();
                     miniCart();
-                    couponCalculation();
                 }
             });
         }
@@ -790,8 +790,8 @@
                 url: "{{ url('/cart/coupon-remove') }}",
                 dataType: 'json',
                 success: function(data) {
-                    couponCalculation();
                     cart();
+                    couponCalculation();
                     $('#couponField').show();
                     $('#coupon_name').val('');
 

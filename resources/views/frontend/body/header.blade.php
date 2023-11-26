@@ -39,7 +39,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="#">
+                            <a href="{{ route('checkout') }}">
                                 <i class="icon fa fa-check"></i>
                                 @if (session()->get('language') == 'en')
                                     Checkout
@@ -200,7 +200,7 @@
                                         <span class="price"> ₫</span>
                                     </div>
                                     <div class="clearfix"></div>
-                                    <a href="checkout.html" class="btn btn-upper btn-primary btn-block m-t-20">
+                                    <a href="/cart/my-cart" class="btn btn-upper btn-primary btn-block m-t-20">
                                         @if (session()->get('language') == 'en')
                                             Checkout
                                         @else

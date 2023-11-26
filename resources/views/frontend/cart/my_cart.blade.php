@@ -139,7 +139,7 @@
                                 <tr>
                                     <td>
                                         <div class="cart-checkout-btn pull-right">
-                                            <a href="" type="submit" class="btn btn-primary checkout-btn">
+                                            <a href="{{ route('checkout') }}" type="submit" class="btn btn-primary checkout-btn">
 
                                                 @if (session()->get('language') == 'en')
                                                     CHEKOUT
