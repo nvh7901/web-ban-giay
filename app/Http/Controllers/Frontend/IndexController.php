@@ -10,6 +10,7 @@ use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\OrderItem;
+use PDF;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
@@ -107,5 +108,18 @@ class IndexController extends Controller
         $categories = Category::orderBy('id', 'ASC')->get();
         $orders = Order::where('user_id', Auth::user()->id)->orderBy('id', 'DESC')->paginate(7);
         return view('frontend.order.index', compact('categories', 'orders'));
+    }
+
+    public function invoiceDowload($id)
+    {
+        $order = Order::with('province', 'district', 'ward', 'user')->where('id', $id)->where('user_id', Auth::user()->id)->first();
+        $orderItem = OrderItem::with('product')->where('order_id', $id)->orderBy('id', 'DESC')->get();
+
+        $pdf = PDF::loadView('frontend.order.invoice_dowload', compact('order', 'orderItem'))->setPaper('a4')->setOptions([
+            'tempDir' => public_path(),
+            'chroot' => public_path(),
+        ]);
+        return $pdf->download('invoice.pdf');
+        // return view('frontend.order.invoice_dowload', compact('order', 'orderItem'));
     }
 }

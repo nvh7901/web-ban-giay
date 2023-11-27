@@ -64,7 +64,7 @@
                                         </td>
                                         <td>{{ $order->payment_method }}</td>
                                         <td>
-                                            <a href="{{ url('user/invoice_download/' . $order->id) }}"
+                                            <a href="/user/order/invoice-dowload/{{ $order->id }}"
                                                 class="btn btn-sm btn-danger">
                                                 <i class="fa fa-download" style="color: white;"></i> Invoice
                                             </a>

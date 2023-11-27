@@ -213,6 +213,7 @@ Route::prefix('user')->middleware('check.user.login')->group(function () {
 
     Route::prefix('order')->group(function () {
         Route::get('/', [IndexController::class, 'getMyOrder']);
+        Route::get('/invoice-dowload/{id}', [IndexController::class, 'invoiceDowload']);
     });
 });
 
