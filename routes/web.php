@@ -210,6 +210,10 @@ Route::prefix('user')->middleware('check.user.login')->group(function () {
         Route::get('/', [IndexController::class, 'getChangePassword'])->name('user.get.change-password');
         Route::post('/', [IndexController::class, 'postChangePassword'])->name('user.post.change-password');
     });
+
+    Route::prefix('order')->group(function () {
+        Route::get('/', [IndexController::class, 'getMyOrder']);
+    });
 });
 
 Route::prefix('cart')->middleware('check.user.login')->group(function () {

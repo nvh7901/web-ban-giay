@@ -3,11 +3,13 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Models\User;
+use App\Models\Order;
+use App\Models\Slider;
+use App\Models\Product;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\Category;
-use App\Models\Product;
-use App\Models\Slider;
+use App\Models\OrderItem;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
@@ -97,5 +99,13 @@ class IndexController extends Controller
         } else {
             return redirect()->back();
         }
+    }
+
+    // Order
+    public function getMyOrder()
+    {
+        $categories = Category::orderBy('id', 'ASC')->get();
+        $orders = Order::where('user_id', Auth::user()->id)->orderBy('id', 'DESC')->paginate(7);
+        return view('frontend.order.index', compact('categories', 'orders'));
     }
 }
