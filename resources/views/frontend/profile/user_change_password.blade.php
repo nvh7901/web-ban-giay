@@ -1,5 +1,11 @@
 @extends('frontend.main')
-@section('title', 'Update Password')
+@section('title')
+    @if (session()->get('language') == 'en')
+        Update Password
+    @else
+        Cập Nhật Mật Khẩu
+    @endif
+@endsection
 @section('content')
     <div class="body-content outer-top-xs">
         <div class="container">
@@ -19,26 +25,48 @@
                                 action="{{ route('user.post.change-password') }}">
                                 @csrf
                                 <div class="form-group">
-                                    <label class="info-title" for="exampleInputEmail1">Current Password
-                                        <span>*</span></label>
+                                    <label class="info-title" for="exampleInputEmail1">
+                                        @if (session()->get('language') == 'en')
+                                            Current Password
+                                        @else
+                                            Mật Khẩu Cũ
+                                        @endif
+                                        <span>*</span>
+                                    </label>
                                     <input type="password" id="current_password" name="oldpassword"
                                         class="form-control unicase-form-control text-input">
                                 </div>
                                 <div class="form-group">
-                                    <label class="info-title" for="exampleInputEmail1">New Password <span>*</span></label>
+                                    <label class="info-title" for="exampleInputEmail1">
+                                        @if (session()->get('language') == 'en')
+                                            New Password
+                                        @else
+                                            Mật Khẩu Mới
+                                        @endif
+                                        <span>*</span>
+                                    </label>
                                     <input type="password" name="password"
                                         class="form-control unicase-form-control text-input">
                                 </div>
 
                                 <div class="form-group">
                                     <label class="info-title" for="exampleInputEmail1">
-                                        Confirm Password <span>*</span>
+                                        @if (session()->get('language') == 'en')
+                                            Confirm Password
+                                        @else
+                                            Xác nhận mật khẩu
+                                        @endif
+                                        <span>*</span>
                                     </label>
                                     <input type="password" id="password_confirmation" name="password_confirmation"
                                         class="form-control unicase-form-control text-input">
                                 </div>
                                 <button type="submit" class="btn-upper btn btn-primary checkout-page-button">
-                                    Update
+                                    @if (session()->get('language') == 'en')
+                                        Update
+                                    @else
+                                        Cập Nhật
+                                    @endif
                                 </button>
                             </form>
                         </div>

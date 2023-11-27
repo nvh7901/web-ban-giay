@@ -1,24 +1,25 @@
 @extends('frontend.main')
-@section('title', 'Reset Password')
+@section('title')
+    @if (session()->get('language') == 'en')
+        Reset Password
+    @else
+        Đặt Lại Mật Khẩu
+    @endif
+@endsection
 @section('content')
-    <div class="breadcrumb">
-        <div class="container">
-            <div class="breadcrumb-inner">
-                <ul class="list-inline list-unstyled">
-                    <li><a href="home.html">Home</a></li>
-                    <li class="active">Forget Password</li>
-                </ul>
-            </div><!-- /.breadcrumb-inner -->
-        </div><!-- /.container -->
-    </div>
-
-    <div class="body-content">
+    <div class="body-content outer-top-xs">
         <div class="container">
             <div class="sign-in-page">
                 <div class="row">
                     <!-- Sign-in -->
                     <div class="col-md-6 col-sm-6 sign-in">
-                        <h4 class="">Forget Password</h4>
+                        <h4 class="">
+                            @if (session()->get('language') == 'en')
+                                Forget Password
+                            @else
+                                Quên Mật Khẩu
+                            @endif
+                        </h4>
                         @if (session('notification'))
                             <div class="alert alert-success" role="alert">
                                 {{ session('notification') }}
@@ -34,12 +35,24 @@
                                 </div>
                             @enderror
                             <div class="form-group">
-                                <label class="info-title" for="exampleInputEmail1">Email <span>*</span></label>
+                                <label class="info-title" for="exampleInputEmail1">
+                                    @if (session()->get('language') == 'en')
+                                        Email
+                                    @else
+                                        Email
+                                    @endif
+                                    <span>*</span>
+                                </label>
                                 <input type="email" name="email" class="form-control unicase-form-control text-input"
                                     id="exampleInputEmail1">
                             </div>
                             <button type="submit" class="btn-upper btn btn-primary checkout-page-button">
-                                Send Password Reset Link
+
+                                @if (session()->get('language') == 'en')
+                                    Send Password Reset Link
+                                @else
+                                    Gửi Liên Kết Đặt Lại Mật Khẩu
+                                @endif
                             </button>
                         </form>
                     </div>

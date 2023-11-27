@@ -120,6 +120,14 @@ class IndexController extends Controller
             'chroot' => public_path(),
         ]);
         return $pdf->download('invoice.pdf');
-        // return view('frontend.order.invoice_dowload', compact('order', 'orderItem'));
+    }
+
+    public function detailOrder($id)
+    {
+        $order = Order::with('province', 'district', 'ward', 'user')->where('id', $id)->where('user_id', Auth::id())->first();
+        $orderItem = OrderItem::with('product')->where('order_id', $id)->orderBy('id', 'DESC')->get();
+        $categories = Category::orderBy('id', 'ASC')->get();
+        
+        return view('frontend.order.detail', compact('order', 'orderItem', 'categories'));
     }
 }
