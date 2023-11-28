@@ -349,8 +349,8 @@
                                         <tr>
                                             <td class="col-md-1">
                                                 <label for=""><img
-                                                        src="{{ url('upload/products/' . $item->product->product_thambnail) }}" height="100px;"
-                                                        width="100px;"> </label>
+                                                        src="{{ url('upload/products/' . $item->product->product_thambnail) }}"
+                                                        height="100px;" width="100px;"> </label>
                                             </td>
 
                                             <td class="col-md-2">
@@ -369,7 +369,7 @@
                                             </td>
 
                                             <td class="col-md-2">
-                                                <label for=""> 
+                                                <label for="">
                                                     {{ $item->color }}
                                                 </label>
                                             </td>

@@ -6,6 +6,7 @@ use App\Http\Controllers\Backend\BrandController;
 use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\CouponController;
 use App\Http\Controllers\Backend\DistrictController;
+use App\Http\Controllers\Backend\OrderController;
 use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\ProvinceController;
 use App\Http\Controllers\Backend\SliderController;
@@ -157,6 +158,13 @@ Route::prefix('admin')->middleware('check.admin.login')->group(function () {
             Route::get('/edit/{id}', [WardController::class, 'edit'])->name('ward.edit');
             Route::post('/update/{id}', [WardController::class, 'update'])->name('ward.update');
             Route::get('/delete/{id}', [WardController::class, 'delete'])->name('ward.delete');
+        });
+    });
+
+    Route::prefix('order')->group(function () {
+        Route::prefix('pending')->group(function () {
+            Route::get('/', [OrderController::class, 'index'])->name('order.pending');
+            Route::get('/{id}', [OrderController::class, 'detailPending']);
         });
     });
 });

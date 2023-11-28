@@ -133,7 +133,27 @@
                     </li>
                 </ul>
             </li>
-
+            {{-- Order --}}
+            <li class="treeview {{ request()->segment(2) == 'order' ? 'active' : '' }}">
+                <a href="{{ route('order.pending') }}">
+                    <i data-feather="grid"></i>
+                    <span>Manager Order</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-right pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li>
+                        <a href="{{ route('order.pending') }}"><i class="ti-more"></i>All Orders Pending</a></li>
+                    </li>
+                </ul>
+            </li>
+            <li class="treeview">
+                <a href="/admin/logout">
+                    <i data-feather="lock"></i>
+                    <span>Log Out</span>
+                </a>
+            </li>
 
             <li class="header nav-small-cap">User Interface</li>
 
@@ -187,12 +207,7 @@
                 </ul>
             </li>
 
-            <li>
-                <a href="./logout">
-                    <i data-feather="lock"></i>
-                    <span>Log Out</span>
-                </a>
-            </li>
+
 
         </ul>
     </section>
