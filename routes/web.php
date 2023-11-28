@@ -165,6 +165,12 @@ Route::prefix('admin')->middleware('check.admin.login')->group(function () {
         Route::prefix('pending')->group(function () {
             Route::get('/', [OrderController::class, 'index'])->name('order.pending');
             Route::get('/{id}', [OrderController::class, 'detailPending']);
+            Route::get('/{id}/confirm', [OrderController::class, 'confirmOrder'])->name('order.confirm');
+        });
+
+        Route::prefix('confirm')->group(function () {
+            Route::get('/', [OrderController::class, 'indexConfirm'])->name('order.confirm.index');
+            Route::get('/{id}', [OrderController::class, 'detailConfirm']);
         });
     });
 });

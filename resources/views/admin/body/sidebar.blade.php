@@ -146,6 +146,10 @@
                     <li>
                         <a href="{{ route('order.pending') }}"><i class="ti-more"></i>All Orders Pending</a></li>
                     </li>
+
+                    <li>
+                        <a href="{{ route('order.confirm.index') }}"><i class="ti-more"></i>All Orders Confirm</a></li>
+                    </li>
                 </ul>
             </li>
             <li class="treeview">

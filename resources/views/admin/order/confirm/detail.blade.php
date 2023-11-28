@@ -13,8 +13,8 @@
                                 </li>
                                 <li class="breadcrumb-item" aria-current="page"><a href="/admin/dashboard">Dashboard</a>
                                 </li>
-                                <li class="breadcrumb-item" aria-current="page"><a href="/admin/order/pending">List Order
-                                        Pending</a>
+                                <li class="breadcrumb-item" aria-current="page"><a href="/admin/order/confirm">List Order
+                                        Confirm</a>
                                 </li>
                                 <li class="breadcrumb-item active" aria-current="page">Detail Order</li>
                             </ol>
@@ -129,24 +129,7 @@
                                         style="background: #418DB9;">{{ $orders->status }} </span>
                                 </th>
                             </tr>
-
-
-                            <tr>
-                                <th> </th>
-                                <th>
-                                    @if ($orders->status == 'PENDING')
-                                        <a href="/admin/order/pending/{{ $orders->id }}/confirm"
-                                            class="btn btn-block btn-success" id="confirm">Confirm Order</a>
-                                    @endif
-                                </th>
-                            </tr>
-
-
-
                         </table>
-
-
-
                     </div>
                 </div> <!--  // cod md -6 -->
 
