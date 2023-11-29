@@ -5,14 +5,14 @@
         <div class="content-header">
             <div class="d-flex align-items-center">
                 <div class="mr-auto">
-                    <h3 class="page-title">List Orders Pending</h3>
+                    <h3 class="page-title">Statistical Date</h3>
                     <div class="d-inline-block align-items-center">
                         <nav>
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="#"><i class="mdi mdi-home-outline"></i></a></li>
                                 <li class="breadcrumb-item" aria-current="page"><a href="/admin/dashboard">Dashboard</a>
                                 </li>
-                                <li class="breadcrumb-item active" aria-current="page">List Orders Pending</li>
+                                <li class="breadcrumb-item active" aria-current="page">Statistical Date</li>
                             </ol>
                         </nav>
                     </div>
@@ -87,20 +87,30 @@
                                                             <td>{{ $item->invoice_no }} </td>
                                                             <td>{{ number_format($item->amount, 0, ',', '.') }} đ</td>
                                                             <td>{{ $item->payment_method }} </td>
-                                                            <td> <span class="badge badge-pill badge-primary"
-                                                                    style="background: #800080;">{{ $item->status }}
-                                                                </span> </td>
+                                                            <td>
+                                                                @if ($item->status == 'PENDING')
+                                                                    <span class="badge badge-pill badge-warning"
+                                                                        style="background: #800080;">
+                                                                        PENDING
+                                                                    </span>
+                                                                @elseif($item->status == 'CONFIRM')
+                                                                    <span class="badge badge-pill badge-warning"
+                                                                        style="background: #0000FF;">CONFIRM
+                                                                    </span>
+                                                                @endif
+                                                            </td>
 
                                                             <td>
-                                                                <a href="pending/{{ $item->id }}" class="btn btn-info"
-                                                                    title="Detail"><i class="fa fa-eye"></i> </a>
+                                                                <a href="/admin/order/pending/{{ $item->id }}"
+                                                                    class="btn btn-info" title="Detail"><i
+                                                                        class="fa fa-eye"></i> </a>
 
                                                             </td>
                                                         </tr>
                                                     @endforeach
                                                 </tbody>
                                             </table>
-                                            {{ $orders->links('admin.components.paginate_custom') }}
+                                            {{-- {{ $orders->links('admin.components.paginate_custom') }} --}}
                                         </div>
                                     </div>
 

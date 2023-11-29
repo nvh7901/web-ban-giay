@@ -88,8 +88,8 @@
                                                             <td>{{ $item->invoice_no }} </td>
                                                             <td>{{ number_format($item->amount, 0, ',', '.') }} đ</td>
                                                             <td>{{ $item->payment_method }} </td>
-                                                            <td> <span
-                                                                    class="badge badge-pill badge-primary">{{ $item->status }}
+                                                            <td> <span class="badge badge-pill badge-primary"
+                                                                    style="background: #0000FF;">{{ $item->status }}
                                                                 </span> </td>
 
                                                             <td>

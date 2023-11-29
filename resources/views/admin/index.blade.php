@@ -62,6 +62,149 @@
                         </div>
                     </div>
                 </div>
+
+                <div class="col-4">
+
+                    <div class="box">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">Search By Date</h3>
+                        </div>
+                        <!-- /.box-header -->
+                        <div class="box-body">
+                            <div class="table-responsive">
+                                <form method="post" action="/admin/dashboard/search/date">
+                                    @csrf
+                                    <div class="form-group">
+                                        <h5>Select Date <span class="text-danger">*</span></h5>
+                                        <div class="controls">
+                                            <input type="date" name="date" class="form-control">
+                                        </div>
+                                    </div>
+
+
+                                    <div class="text-xs-right">
+                                        <input type="submit" class="btn btn-rounded btn-primary mb-5" value="Search">
+                                    </div>
+                                </form>
+
+
+                            </div>
+                        </div>
+                        <!-- /.box-body -->
+                    </div>
+                    <!-- /.box -->
+                </div>
+
+                <div class="col-4">
+                    <div class="box">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">Search By Month </h3>
+                        </div>
+                        <!-- /.box-header -->
+                        <div class="box-body">
+                            <div class="table-responsive">
+                                <form method="post" action="/admin/dashboard/search/month-year">
+                                    @csrf
+                                    <div class="form-group">
+                                        <h5>Select Month <span class="text-danger">*</span></h5>
+                                        <div class="controls">
+
+                                            <select name="month" class="form-control">
+                                                <option label="Choose One"></option>
+                                                <option value="1">Tháng 1</option>
+                                                <option value="2">Tháng 2</option>
+                                                <option value="3">Tháng 3</option>
+                                                <option value="4">Tháng 4</option>
+                                                <option value="5">Tháng 5</option>
+                                                <option value="6">Tháng 6 </option>
+                                                <option value="7">Tháng 7</option>
+                                                <option value="8">Tháng 8</option>
+                                                <option value="9">Tháng 9</option>
+                                                <option value="10">Tháng 10</option>
+                                                <option value="11">Tháng 11</option>
+                                                <option value="12">Tháng 12</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="form-group">
+                                        <h5>Select Year <span class="text-danger">*</span></h5>
+                                        <div class="controls">
+
+                                            <select name="year_name" class="form-control">
+                                                <option label="Choose One"></option>
+                                                <option value="2020">2020</option>
+                                                <option value="2021">2021</option>
+                                                <option value="2022">2022</option>
+                                                <option value="2023">2023</option>
+                                                <option value="2024">2024</option>
+                                                <option value="2025">2025</option>
+                                                <option value="2026">2026</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="text-xs-right">
+                                        <input type="submit" class="btn btn-rounded btn-primary mb-5" value="Search">
+                                    </div>
+                                </form>
+
+
+                            </div>
+                        </div>
+                        <!-- /.box-body -->
+                    </div>
+                    <!-- /.box -->
+                </div>
+
+                <div class="col-4">
+
+                    <div class="box">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">Select Year </h3>
+                        </div>
+                        <!-- /.box-header -->
+                        <div class="box-body">
+                            <div class="table-responsive">
+
+
+                                <form method="post" action="/admin/dashboard/search/year">
+                                    @csrf
+
+                                    <div class="form-group">
+                                        <h5>Select Year <span class="text-danger">*</span></h5>
+                                        <div class="controls">
+
+                                            <select name="year" class="form-control">
+                                                <option label="Choose One"></option>
+                                                <option value="2020">2020</option>
+                                                <option value="2021">2021</option>
+                                                <option value="2022">2022</option>
+                                                <option value="2023">2023</option>
+                                                <option value="2024">2024</option>
+                                                <option value="2025">2025</option>
+                                                <option value="2026">2026</option>
+                                            </select>
+
+                                            @error('year')
+                                                <span class="text-danger">{{ $message }}</span>
+                                            @enderror
+                                        </div>
+                                    </div>
+
+                                    <div class="text-xs-right">
+                                        <input type="submit" class="btn btn-rounded btn-primary mb-5" value="Search">
+                                    </div>
+                                </form>
+
+
+                            </div>
+                        </div>
+                        <!-- /.box-body -->
+                    </div>
+                    <!-- /.box -->
+                </div>
             </div>
         </section>
         <!-- /.content -->

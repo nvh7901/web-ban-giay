@@ -75,7 +75,7 @@ class CheckoutController extends Controller
             'amount' => $total_amount,
             'invoice_no' => 'VH' . mt_rand(10000000, 99999999),
             'order_date' => Carbon::now()->format('d-m-Y'),
-            'order_month' => Carbon::now()->format('F'),
+            'order_month' => Carbon::now()->format('m'),
             'order_year' => Carbon::now()->format('Y'),
             'status' => 'PENDING',
             'created_at' => Carbon::now(),

@@ -5,6 +5,7 @@ use App\Http\Controllers\Backend\AdminProfileController;
 use App\Http\Controllers\Backend\BrandController;
 use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\CouponController;
+use App\Http\Controllers\Backend\DashBoardController;
 use App\Http\Controllers\Backend\DistrictController;
 use App\Http\Controllers\Backend\OrderController;
 use App\Http\Controllers\Backend\ProductController;
@@ -39,10 +40,15 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 // ------------------- Admin ---------------------
 Route::prefix('admin')->middleware('check.admin.login')->group(function () {
-    Route::get('/dashboard', function () {
-        return view('admin.index');
+    Route::prefix('dashboard')->group(function () {
+        Route::get('/', [DashBoardController::class, 'dashboard']);
+        // Thống kê đơn hàng theo ngày tháng năm
+        Route::prefix('search')->group(function () {
+            Route::post('/date', [DashBoardController::class, 'searchDate']);
+            Route::post('/month-year', [DashBoardController::class, 'searchMonthAndYear']);
+            Route::post('/year', [DashBoardController::class, 'searchYear']);
+        });
     });
-
     // Login Admin
     Route::prefix('/login')->group(function () {
         Route::get('/', [AdminController::class, 'getLogin'])->withoutMiddleware('check.admin.login');

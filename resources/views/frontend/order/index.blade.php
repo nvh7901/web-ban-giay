@@ -85,19 +85,13 @@
                                                     @endif
                                                 </span>
                                             @elseif($order->status == 'CONFIRM')
-                                                <span class="badge badge-pill badge-warning"
-                                                    style="background: #0000FF;">CONFIRM</span>
-                                            @elseif($order->status == 'DELIVERED')
-                                                <span class="badge badge-pill badge-warning"
-                                                    style="background: #008000;">DELIVERED</span>
-
-                                                @if ($order->return_order == 1)
-                                                    <span class="badge badge-pill badge-warning"
-                                                        style="background:red;">Return Requested</span>
-                                                @endif
-                                            @else
-                                                <span class="badge badge-pill badge-warning"
-                                                    style="background: #FF0000;">Cancel</span>
+                                                <span class="badge badge-pill badge-warning" style="background: #0000FF;">
+                                                    @if (session()->get('language') == 'en')
+                                                        CONFIRM
+                                                    @else
+                                                        XÁC NHẬN
+                                                    @endif
+                                                </span>
                                             @endif
                                         </td>
                                         <td>{{ $order->payment_method }}</td>
