@@ -12,6 +12,7 @@ use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\ProvinceController;
 use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\Backend\SubCategoryController;
+use App\Http\Controllers\Backend\UserController;
 use App\Http\Controllers\Backend\WardController;
 use App\Http\Controllers\Frontend\AuthenticationController;
 use App\Http\Controllers\Frontend\CartController;
@@ -133,7 +134,6 @@ Route::prefix('admin')->middleware('check.admin.login')->group(function () {
         Route::post('/update/{id}', [CouponController::class, 'update'])->name('coupon.update');
         Route::get('/delete/{id}', [CouponController::class, 'delete'])->name('coupon.delete');
     });
-
     // Ship
     Route::prefix('ship')->group(function () {
         // Tỉnh
@@ -166,7 +166,7 @@ Route::prefix('admin')->middleware('check.admin.login')->group(function () {
             Route::get('/delete/{id}', [WardController::class, 'delete'])->name('ward.delete');
         });
     });
-
+    // Order
     Route::prefix('order')->group(function () {
         Route::prefix('pending')->group(function () {
             Route::get('/', [OrderController::class, 'index'])->name('order.pending');
@@ -178,6 +178,10 @@ Route::prefix('admin')->middleware('check.admin.login')->group(function () {
             Route::get('/', [OrderController::class, 'indexConfirm'])->name('order.confirm.index');
             Route::get('/{id}', [OrderController::class, 'detailConfirm']);
         });
+    });
+    // User
+    Route::prefix('user')->group(function() {
+        Route::get('/', [UserController::class, 'index'])->name('user.backend.index');
     });
 });
 // -------------------End Admin -------------------

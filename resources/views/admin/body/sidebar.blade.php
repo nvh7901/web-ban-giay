@@ -137,7 +137,7 @@
             <li class="treeview {{ request()->segment(2) == 'order' ? 'active' : '' }}">
                 <a href="{{ route('order.pending') }}">
                     <i data-feather="grid"></i>
-                    <span>Manager Order</span>
+                    <span>Manage Order</span>
                     <span class="pull-right-container">
                         <i class="fa fa-angle-right pull-right"></i>
                     </span>
@@ -149,6 +149,20 @@
 
                     <li>
                         <a href="{{ route('order.confirm.index') }}"><i class="ti-more"></i>All Orders Confirm</a></li>
+                    </li>
+                </ul>
+            </li>
+            {{-- User --}}
+            <li class="treeview {{ request()->segment(2) == 'slider' ? 'active' : '' }}">
+                <a href="{{ route('user.backend.index') }}">
+                    <i data-feather="grid"></i>
+                    <span>Manage User</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-right pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="{{ route('user.backend.index') }}"><i class="ti-more"></i>All Users</a></li>
                     </li>
                 </ul>
             </li>
