@@ -1,4 +1,6 @@
 @extends('admin.master')
+@section('title', 'Edit Wards')
+
 @section('admin')
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <div class="container-full">
@@ -87,7 +89,8 @@
                                                     <label>Ward Name <span class="text-danger">*</span></label>
 
                                                     <div class="input-group">
-                                                        <input type="text" class="form-control" name="ward_name" value="{{ $ward->ward_name }}">
+                                                        <input type="text" class="form-control" name="ward_name"
+                                                            value="{{ $ward->ward_name }}">
                                                     </div>
                                                     <!-- /.input group -->
                                                 </div>

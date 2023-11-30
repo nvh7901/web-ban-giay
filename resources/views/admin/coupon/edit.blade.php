@@ -1,4 +1,6 @@
 @extends('admin.master')
+@section('title', 'Edit Coupon')
+
 @section('admin')
     <div class="container-full">
         <!-- Content Header (Page header) -->
@@ -44,7 +46,8 @@
                                                     <label>Coupon Name <span class="text-danger">*</span></label>
 
                                                     <div class="input-group">
-                                                        <input type="text" class="form-control" name="coupon_name" value="{{ $coupon->coupon_name }}">
+                                                        <input type="text" class="form-control" name="coupon_name"
+                                                            value="{{ $coupon->coupon_name }}">
                                                     </div>
                                                     <!-- /.input group -->
                                                 </div>
@@ -59,7 +62,8 @@
                                                     <label>Coupon Discount (%) <span class="text-danger">*</span></label>
 
                                                     <div class="input-group">
-                                                        <input type="text" class="form-control" name="coupon_discount" value="{{ $coupon->coupon_discount }}">
+                                                        <input type="text" class="form-control" name="coupon_discount"
+                                                            value="{{ $coupon->coupon_discount }}">
                                                     </div>
                                                     <!-- /.input group -->
                                                 </div>
@@ -76,7 +80,8 @@
 
                                                     <div class="input-group">
                                                         <input type="date" class="form-control" name="coupon_date"
-                                                            min="{{ Carbon\Carbon::now()->format('d-m-Y') }}" value="{{ $coupon->coupon_date }}">
+                                                            min="{{ Carbon\Carbon::now()->format('d-m-Y') }}"
+                                                            value="{{ $coupon->coupon_date }}">
                                                     </div>
                                                     <!-- /.input group -->
                                                 </div>

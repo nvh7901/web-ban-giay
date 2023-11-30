@@ -1,4 +1,5 @@
 @extends('admin.master')
+@section('title', 'Profile')
 @section('admin')
     <div class="container-full">
 

@@ -154,18 +154,32 @@
                                                             <div class="action">
                                                                 <ul class="list-unstyled">
                                                                     <li class="add-cart-button btn-group">
-                                                                        <button class="btn btn-primary icon"
-                                                                            data-toggle="dropdown" type="button"> <i
-                                                                                class="fa fa-shopping-cart"></i> </button>
+                                                                        <button class="btn btn-primary icon" type="button"
+                                                                            data-toggle="modal" data-target="#exampleModal"
+                                                                            onclick="productView(this.id)"
+                                                                            id="{{ $product->id }}">
+                                                                            <i class="fa fa-shopping-cart"></i>
+                                                                        </button>
+
+
                                                                         <button class="btn btn-primary cart-btn"
-                                                                            type="button">Add to cart</button>
+                                                                            type="button">
+                                                                            Add to cart
+                                                                        </button>
                                                                     </li>
-                                                                    <li class="lnk wishlist"> <a class="add-to-cart"
-                                                                            href="detail.html" title="Wishlist"> <i
-                                                                                class="icon fa fa-heart"></i> </a> </li>
-                                                                    <li class="lnk"> <a class="add-to-cart"
-                                                                            href="detail.html" title="Compare"> <i
-                                                                                class="fa fa-signal"></i> </a> </li>
+                                                                    <li class="add-cart-button btn-group">
+                                                                        <button class="btn btn-danger" title="Wishlist"
+                                                                            type="button" id="{{ $product->id }}"
+                                                                            onclick="addToWishList(this.id)">
+                                                                            <i class="icon fa fa-heart"></i>
+                                                                        </button>
+                                                                    </li>
+                                                                    <li class="lnk">
+                                                                        <a data-toggle="tooltip" class="add-to-cart"
+                                                                            href="#" title="Compare">
+                                                                            <i class="fa fa-signal" aria-hidden="true"></i>
+                                                                        </a>
+                                                                    </li>
                                                                 </ul>
                                                             </div>
                                                             <!-- /.action -->
@@ -329,9 +343,6 @@
                 <!-- /.col -->
             </div>
             <!-- /.row -->
-            <!-- ============================================== BRANDS CAROUSEL ============================================== -->
-            @include('frontend.components.brands')
-            <!-- /.logo-slider -->
             <!-- ============================================== BRANDS CAROUSEL : END ============================================== -->
         </div>
         <!-- /.container -->

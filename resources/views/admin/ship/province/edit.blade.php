@@ -1,4 +1,6 @@
 @extends('admin.master')
+@section('title', 'Edit Provinces')
+
 @section('admin')
     <div class="container-full">
         <div class="content-header">
@@ -32,7 +34,7 @@
                                 <div class="col">
                                     <form method="POST" action="/admin/ship/province/update/{{ $province->id }}">
                                         @csrf
-                                        
+
                                         <div class="row">
                                             <div class="col-md-12">
                                                 @error('province_name')

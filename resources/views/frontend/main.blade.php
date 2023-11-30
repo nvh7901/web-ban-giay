@@ -361,7 +361,7 @@
         function miniCartRemove(rowId) {
             $.ajax({
                 type: 'GET',
-                url: 'cart/mini/remove/' + rowId,
+                url: '/cart/mini/remove/' + rowId,
                 dataType: 'json',
                 success: function(data) {
                     miniCart();
@@ -397,7 +397,7 @@
             $.ajax({
                 type: 'POST',
                 dataType: 'json',
-                url: 'wishlist/add/' + id,
+                url: '/wishlist/add/' + id,
                 success: function(data) {
                     // Start Message 
                     console.log(data);

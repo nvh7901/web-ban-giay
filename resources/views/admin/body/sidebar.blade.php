@@ -28,7 +28,7 @@
             <li class="treeview {{ request()->segment(2) == 'brand' ? 'active' : '' }}">
                 <a href="{{ route('brand.index') }}">
                     <i data-feather="grid"></i>
-                    <span>Brands</span>
+                    <span>Manage Brands</span>
                     <span class="pull-right-container">
                         <i class="fa fa-angle-right pull-right"></i>
                     </span>
@@ -42,7 +42,7 @@
             <li class="treeview {{ request()->segment(2) == 'category' ? 'active' : '' }}">
                 <a href="{{ route('category.index') }}">
                     <i data-feather="grid"></i>
-                    <span>Categories</span>
+                    <span>Manage Categories</span>
                     <span class="pull-right-container">
                         <i class="fa fa-angle-right pull-right"></i>
                     </span>
@@ -56,7 +56,7 @@
             <li class="treeview {{ request()->segment(2) == 'sub-category' ? 'active' : '' }}">
                 <a href="{{ route('sub-category.index') }}">
                     <i data-feather="grid"></i>
-                    <span>Sub Categories</span>
+                    <span>Manage Sub Categories</span>
                     <span class="pull-right-container">
                         <i class="fa fa-angle-right pull-right"></i>
                     </span>
@@ -71,7 +71,7 @@
             <li class="treeview {{ request()->segment(2) == 'product' ? 'active' : '' }}">
                 <a href="{{ route('product.index') }}">
                     <i data-feather="grid"></i>
-                    <span>Products</span>
+                    <span>Manage Products</span>
                     <span class="pull-right-container">
                         <i class="fa fa-angle-right pull-right"></i>
                     </span>
@@ -86,7 +86,7 @@
             <li class="treeview {{ request()->segment(2) == 'slider' ? 'active' : '' }}">
                 <a href="{{ route('slider.index') }}">
                     <i data-feather="grid"></i>
-                    <span>Sliders</span>
+                    <span>Manage Sliders</span>
                     <span class="pull-right-container">
                         <i class="fa fa-angle-right pull-right"></i>
                     </span>
@@ -101,7 +101,7 @@
             <li class="treeview {{ request()->segment(2) == 'coupon' ? 'active' : '' }}">
                 <a href="{{ route('coupon.index') }}">
                     <i data-feather="grid"></i>
-                    <span>Coupons</span>
+                    <span>Manage Coupons</span>
                     <span class="pull-right-container">
                         <i class="fa fa-angle-right pull-right"></i>
                     </span>
@@ -116,7 +116,7 @@
             <li class="treeview {{ request()->segment(2) == 'ship' ? 'active' : '' }}">
                 <a href="#">
                     <i data-feather="grid"></i>
-                    <span>Ships</span>
+                    <span>Manage Ships</span>
                     <span class="pull-right-container">
                         <i class="fa fa-angle-right pull-right"></i>
                     </span>
@@ -137,7 +137,7 @@
             <li class="treeview {{ request()->segment(2) == 'order' ? 'active' : '' }}">
                 <a href="{{ route('order.pending') }}">
                     <i data-feather="grid"></i>
-                    <span>Manage Order</span>
+                    <span>Manage Orders</span>
                     <span class="pull-right-container">
                         <i class="fa fa-angle-right pull-right"></i>
                     </span>
@@ -156,7 +156,7 @@
             <li class="treeview {{ request()->segment(2) == 'slider' ? 'active' : '' }}">
                 <a href="{{ route('user.backend.index') }}">
                     <i data-feather="grid"></i>
-                    <span>Manage User</span>
+                    <span>Manage Users</span>
                     <span class="pull-right-container">
                         <i class="fa fa-angle-right pull-right"></i>
                     </span>

@@ -1,4 +1,6 @@
 @extends('admin.master')
+@section('title', 'List Orders Pending')
+
 @section('admin')
     <div class="container-full">
         <!-- Content Header (Page header) -->

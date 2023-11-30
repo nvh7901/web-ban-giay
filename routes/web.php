@@ -20,6 +20,7 @@ use App\Http\Controllers\Frontend\CheckoutController;
 use App\Http\Controllers\Frontend\IndexController;
 use App\Http\Controllers\Frontend\LanguageController;
 use App\Http\Controllers\Frontend\ProductController as FrontendProductController;
+use App\Http\Controllers\Frontend\ReviewController;
 use App\Http\Controllers\Frontend\WishListController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -272,4 +273,6 @@ Route::prefix('wishlist')->middleware('check.user.login')->group(function () {
 
 Route::get('/district/{province_id}', [CheckoutController::class, 'getDataDistrict']);
 Route::get('/ward/{district_id}', [CheckoutController::class, 'getDataWard']);
+
+Route::post('/review/store', [ReviewController::class, 'store'])->name('review.store');
 // ------------------- End Frontend ---------------

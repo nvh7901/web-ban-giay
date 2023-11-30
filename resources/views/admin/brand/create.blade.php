@@ -1,4 +1,5 @@
 @extends('admin.master')
+@section('title', 'Create Brand')
 @section('admin')
     <div class="container-full">
         <div class="content-header">

@@ -1,7 +1,20 @@
 @extends('admin.master')
+@section('title', 'Dashboard')
 @section('admin')
     <div class="container-full">
+        @php
+            $date = date('d-m-y');
+            $today = App\Models\Order::where('order_date', $date)->sum('amount');
 
+            $month = date('m');
+            $month = App\Models\Order::where('order_month', $month)->sum('amount');
+
+            $year = date('Y');
+            $year = App\Models\Order::where('order_year', $year)->sum('amount');
+
+            $pending = App\Models\Order::where('status', 'PENDING')->get();
+
+        @endphp
         <!-- Main content -->
         <section class="content">
             <div class="row">
@@ -12,9 +25,9 @@
                                 <i class="text-primary mr-0 font-size-24 mdi mdi-account-multiple"></i>
                             </div>
                             <div>
-                                <p class="text-mute mt-20 mb-0 font-size-16">New Customers</p>
-                                <h3 class="text-white mb-0 font-weight-500">3400 <small class="text-success"><i
-                                            class="fa fa-caret-up"></i> +2.5%</small></h3>
+                                <p class="text-mute mt-20 mb-0 font-size-16">Statiscal Day</p>
+                                <h3 class="text-white mb-0 font-weight-500">{{ $today }}
+                                </h3>
                             </div>
                         </div>
                     </div>
@@ -26,9 +39,9 @@
                                 <i class="text-warning mr-0 font-size-24 mdi mdi-car"></i>
                             </div>
                             <div>
-                                <p class="text-mute mt-20 mb-0 font-size-16">Sold Cars</p>
-                                <h3 class="text-white mb-0 font-weight-500">3400 <small class="text-success"><i
-                                            class="fa fa-caret-up"></i> +2.5%</small></h3>
+                                <p class="text-mute mt-20 mb-0 font-size-16">Statiscal Month</p>
+                                <h3 class="text-white mb-0 font-weight-500">{{ number_format($month, 0, '.') }} đ
+
                             </div>
                         </div>
                     </div>
@@ -40,9 +53,8 @@
                                 <i class="text-info mr-0 font-size-24 mdi mdi-sale"></i>
                             </div>
                             <div>
-                                <p class="text-mute mt-20 mb-0 font-size-16">Sales Lost</p>
-                                <h3 class="text-white mb-0 font-weight-500">$1,250 <small class="text-danger"><i
-                                            class="fa fa-caret-down"></i> -0.5%</small>
+                                <p class="text-mute mt-20 mb-0 font-size-16">Statiscal Year</p>
+                                <h3 class="text-white mb-0 font-weight-500">{{ number_format($year , 0, '.') }} đ
                                 </h3>
                             </div>
                         </div>
@@ -55,9 +67,9 @@
                                 <i class="text-danger mr-0 font-size-24 mdi mdi-phone-incoming"></i>
                             </div>
                             <div>
-                                <p class="text-mute mt-20 mb-0 font-size-16">Inbound Call</p>
-                                <h3 class="text-white mb-0 font-weight-500">1,460 <small class="text-danger"><i
-                                            class="fa fa-caret-up"></i> -1.5%</small></h3>
+                                <p class="text-mute mt-20 mb-0 font-size-16">Pending Orders</p>
+                                <h3 class="text-white mb-0 font-weight-500">{{ count($pending) }} Order
+
                             </div>
                         </div>
                     </div>

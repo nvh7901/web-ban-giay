@@ -1,4 +1,5 @@
 @extends('admin.master')
+@section('title', 'Create Category')
 @section('admin')
     <div class="container-full">
         <!-- Content Header (Page header) -->

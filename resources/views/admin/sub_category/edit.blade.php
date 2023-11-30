@@ -1,4 +1,6 @@
 @extends('admin.master')
+@section('title', 'Edit Sub Category')
+
 @section('admin')
     <div class="container-full">
         <div class="content-header">
@@ -46,7 +48,8 @@
                                                             <option value="" selected disabled>------- Choose Category
                                                                 -------</option>
                                                             @foreach ($dataCategories as $category)
-                                                                <option value="{{ $category->id }}" {{ $category->id == $subCategory->category_id ? 'selected' : '' }}>
+                                                                <option value="{{ $category->id }}"
+                                                                    {{ $category->id == $subCategory->category_id ? 'selected' : '' }}>
                                                                     {{ $category->category_name_en }}
                                                                 </option>
                                                             @endforeach
@@ -68,7 +71,8 @@
 
                                                     <div class="input-group">
                                                         <input type="text" class="form-control"
-                                                            name="sub_category_name_vi" value="{{ $subCategory->sub_category_name_vi }}">
+                                                            name="sub_category_name_vi"
+                                                            value="{{ $subCategory->sub_category_name_vi }}">
                                                     </div>
                                                     <!-- /.input group -->
                                                 </div>
@@ -84,7 +88,8 @@
 
                                                     <div class="input-group">
                                                         <input type="text" class="form-control"
-                                                            name="sub_category_name_en" value="{{ $subCategory->sub_category_name_en }}">
+                                                            name="sub_category_name_en"
+                                                            value="{{ $subCategory->sub_category_name_en }}">
                                                     </div>
                                                     <!-- /.input group -->
                                                 </div>

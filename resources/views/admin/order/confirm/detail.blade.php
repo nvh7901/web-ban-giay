@@ -1,4 +1,6 @@
 @extends('admin.master')
+@section('title', 'Detail Order Confirm')
+
 @section('admin')
     <div class="container-full">
         <!-- Content Header (Page header) -->

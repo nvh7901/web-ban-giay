@@ -1,4 +1,6 @@
 @extends('admin.master')
+@section('title', 'Edit Slider')
+
 @section('admin')
     <div class="container-full">
         <div class="content-header">
@@ -82,7 +84,7 @@
 
                                                     <div class="controls">
                                                         <textarea id="editor1" name="slider_description_vi" rows="10" cols="80">
-                                                            {!!  $slider->slider_description_vi  !!}
+                                                            {!! $slider->slider_description_vi !!}
                                                         </textarea>
                                                     </div>
                                                     <!-- /.input group -->
@@ -100,7 +102,7 @@
 
                                                     <div class="controls">
                                                         <textarea id="editor2" name="slider_description_en" rows="10" cols="80">
-                                                            {!!  $slider->slider_description_en  !!}
+                                                            {!! $slider->slider_description_en !!}
                                                         </textarea>
                                                     </div>
                                                     <!-- /.input group -->

@@ -1,4 +1,6 @@
 @extends('admin.master')
+@section('title', 'Edit Product')
+
 @section('admin')
     <div class="container-full">
         <div class="content-header">
@@ -489,7 +491,8 @@
                             var d = $('select[name="sub_category_id"]').empty();
                             $.each(data, function(key, value) {
                                 $('select[name="sub_category_id"]').append(
-                                    '<option value="' + value.id + '">' + value.sub_category_name_en + '</option>');
+                                    '<option value="' + value.id + '">' + value
+                                    .sub_category_name_en + '</option>');
                             });
                         },
                     });

@@ -1,4 +1,6 @@
 @extends('admin.master')
+@section('title', 'Edit Districts')
+
 @section('admin')
     <div class="container-full">
         <div class="content-header">
@@ -12,7 +14,8 @@
                                 </li>
                                 <li class="breadcrumb-item" aria-current="page"><a href="/admin/dashboard">Dashboard</a>
                                 </li>
-                                <li class="breadcrumb-item" aria-current="page"><a href="/admin//ship/district">List District</a>
+                                <li class="breadcrumb-item" aria-current="page"><a href="/admin//ship/district">List
+                                        District</a>
                                 </li>
                                 <li class="breadcrumb-item active" aria-current="page">Edit District</li>
                             </ol>
@@ -45,7 +48,8 @@
                                                             <option value="" selected disabled>------- Choose Province
                                                                 -------</option>
                                                             @foreach ($dataProvinces as $province)
-                                                                <option value="{{ $province->id }}" {{ $province->id == $district->province_id ? 'selected' : '' }}>
+                                                                <option value="{{ $province->id }}"
+                                                                    {{ $province->id == $district->province_id ? 'selected' : '' }}>
                                                                     {{ $province->province_name }}
                                                                 </option>
                                                             @endforeach
@@ -66,8 +70,8 @@
                                                     <label>District Name <span class="text-danger">*</span></label>
 
                                                     <div class="input-group">
-                                                        <input type="text" class="form-control"
-                                                            name="district_name" value="{{ $district->district_name }}">
+                                                        <input type="text" class="form-control" name="district_name"
+                                                            value="{{ $district->district_name }}">
                                                     </div>
                                                     <!-- /.input group -->
                                                 </div>
